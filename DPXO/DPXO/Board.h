@@ -18,7 +18,7 @@ public:
 
 private:
 	std::array<std::array<char, kWidth>, kHeight> m_board;
-	std::set<std::pair<int, int>> m_emptyPos;
+	std::set<std::pair<uint16_t, uint16_t>> m_emptyPos;
 	enum class States {
 		NONE,
 		WIN,
