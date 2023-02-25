@@ -46,6 +46,24 @@ Board::BoardContent Board::GetBoardContent() const
 	return m_board;
 }
 
+void Board::SetContentOnPos(std::pair<uint16_t, uint16_t> pos, char symbol)
+{
+	m_board[pos.first][pos.second] = symbol;
+	m_emptyPos.erase({ pos.first, pos.second });
+}
+
+std::pair<uint16_t, uint16_t> Board::GetARandomEmptyPos()
+{
+	uint16_t randomLine = UINT16_MAX;
+	uint16_t randomColumn = UINT16_MAX;
+	srand(time(NULL));
+	while (m_emptyPos.find({ randomLine, randomColumn }) == m_emptyPos.end()) {
+		randomLine = rand() % kHeight;
+		randomColumn = rand() % kWidth;
+	}
+	return { randomLine, randomColumn };
+}
+
 std::ostream& operator<<(std::ostream& os, const Board& board)
 {
 	/*for (int i = 0; i < board.kHeight * kCellWidth + board.kHeight - 1; i++)

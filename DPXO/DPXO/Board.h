@@ -26,6 +26,7 @@ public:
 		Tie
 	};
 	typedef std::array<std::array<char, kWidth>, kHeight> BoardContent;
+	typedef std::unordered_set<std::pair<uint16_t, uint16_t>, PairHash> EmptyPositions;
 
 public:
 	Board();
@@ -33,6 +34,8 @@ public:
 public:
 	bool CheckIfAddOnPos(std::pair<uint16_t, uint16_t> pos);
 	State GameState();
+	void SetContentOnPos(std::pair<uint16_t, uint16_t>, char symbol);
+	std::pair<uint16_t, uint16_t> GetARandomEmptyPos();
 
 public:
 	BoardContent GetBoardContent() const;
@@ -42,6 +45,6 @@ public:
 
 private:
 	BoardContent m_board;
-	std::unordered_set<std::pair<uint16_t, uint16_t>, PairHash> m_emptyPos;
+	EmptyPositions m_emptyPos;
 };
 
