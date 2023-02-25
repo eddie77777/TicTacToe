@@ -1,6 +1,7 @@
 #pragma once
 #include <array>
-#include <set>
+#include <unordered_set>
+#include <cstdint>
 
 class Board
 {
@@ -8,21 +9,21 @@ public:
 	static const size_t kWidth = 3;
 	static const size_t kHeight = 3;
 	static const size_t kSize = kWidth * kHeight;
-
-public:
-	Board() = default;
-
-public:
-	bool CheckIfAddOnPos(std::pair<uint16_t,uint16_t> pos);
-	bool WinOrDraw();
-
-private:
-	std::array<std::array<char, kWidth>, kHeight> m_board;
-	std::set<std::pair<uint16_t, uint16_t>> m_emptyPos;
-	enum class States {
-		NONE,
+	enum class State {
+		PLAYING,
 		WIN,
 		TIE
 	};
+
+public:
+	Board();
+
+public:
+	bool CheckIfAddOnPos(std::pair<uint16_t, uint16_t> pos);
+	State GameState();
+
+private:
+	std::array<std::array<char, kWidth>, kHeight> m_board; // { { '-', '-' } };
+	std::unordered_set<std::pair<uint16_t, uint16_t>> m_emptyPos;
 };
 
