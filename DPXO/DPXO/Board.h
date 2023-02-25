@@ -6,17 +6,18 @@
 
 class Board
 {
-public:
+private:
 	static const size_t kWidth = 3;
 	static const size_t kHeight = 3;
 	static const size_t kSize = kWidth * kHeight;
+	typedef std::array<std::array<char, kWidth>, kHeight> BoardContent;
+	typedef std::vector<std::pair<uint16_t, uint16_t>> EmptyPositions;
+public:
 	enum class State {
 		Playing,
 		Win,
 		Tie
 	};
-	typedef std::array<std::array<char, kWidth>, kHeight> BoardContent;
-	typedef std::vector<std::pair<uint16_t, uint16_t>> EmptyPositions;
 
 public:
 	Board();
