@@ -4,16 +4,6 @@
 
 int main()
 {
-	/*Board b;
-	b.SetContentOnPos({ 0,0 }, 'x');
-	b.SetContentOnPos({ 0,1 }, 'x');
-	b.SetContentOnPos({ 0,2 }, 'x');
-	b.SetContentOnPos({ 1,0 }, 'x');
-	b.SetContentOnPos({ 1,2 }, 'x');
-	std::pair<uint16_t, uint16_t >p = b.GetARandomEmptyPos();
-	std::cout << b;
-	std::cout << '\n';
-	std::cout << p.first << ' ' << p.second;*/
 	std::cout << "For human vs human press 1 || For human vs computer press 0\n";
 	bool isHuman;
 	std::cin >> isHuman;
@@ -26,6 +16,10 @@ int main()
 	while (gamelogic.GetBoard().GameState() == Board::State::Playing)
 	{
 		system("CLS");
+		if (whichPlayer % 2 == 1)
+			std::cout << "Player 1 turn: \n";
+		if (whichPlayer % 2 == 0)
+			std::cout << "Player 2 turn: \n";
 		std::cout << gamelogic.GetBoard();
 		std::cout << '\n';
 		if (whichPlayer % 2 == 1 || isHuman)
@@ -55,9 +49,9 @@ int main()
 			system("CLS");
 			std::cout << gamelogic.GetBoard();
 			if(whichPlayer % 2 == 1)
-				std::cout << "Player1 won!";
+				std::cout << "\n\nPlayer1 won!";
 			else 
-				std::cout << "Player2 won!";
+				std::cout << "\n\nPlayer2 won!";
 			return 0;
 		}
 		if (gamelogic.GetBoard().GameState() == Board::State::Tie)
@@ -70,5 +64,5 @@ int main()
 
 		std::cout << "\n\n";
 	}
-
+	//TODO: destructori, verificari pt datele introduse ( linie, coloana inexistenta sau ocupata )
 }
