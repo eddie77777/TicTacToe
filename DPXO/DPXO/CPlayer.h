@@ -3,7 +3,8 @@
 
 class CPlayer : virtual public IPlayer
 {
-	CPlayer();
-	virtual void ChoosePosition(std::pair<uint16_t, uint16_t> pos, const Board& board);
+public:
+	CPlayer()= default;
+	virtual bool ChoosePosition(std::pair<uint16_t, uint16_t> pos, Board& board);
 };
 

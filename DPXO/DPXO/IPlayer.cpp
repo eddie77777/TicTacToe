@@ -2,5 +2,5 @@
 
 void IPlayer::SetSymbol(char newSymbol)
 {
-	symbol = newSymbol;
+	m_symbol = newSymbol;
 }

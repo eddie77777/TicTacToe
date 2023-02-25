@@ -6,9 +6,9 @@
 class IPlayer
 {
 protected:
-	char symbol;
+	char m_symbol;
 	IPlayer() = default;
 public:
-	virtual void ChoosePosition(std::pair<uint16_t, uint16_t> pos, const Board& board) = 0;
+	virtual bool ChoosePosition(std::pair<uint16_t, uint16_t> pos, Board& board) = 0;
 	void SetSymbol(char newSymbol);
 };
