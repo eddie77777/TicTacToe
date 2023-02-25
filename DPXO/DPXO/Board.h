@@ -13,7 +13,7 @@ public:
 	Board() = default;
 
 public:
-	bool CheckIfAddOnPos();
+	bool CheckIfAddOnPos(std::pair<uint16_t,uint16_t> pos);
 	bool WinOrDraw();
 
 private:
