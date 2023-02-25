@@ -1,18 +1,8 @@
 #pragma once
 #include <array>
-#include <unordered_set>
-#include <unordered_map>
 #include <cstdint>
 #include <vector>
 #include <iostream>
-
-struct PairHash {
-	template <typename T1, typename T2>
-	auto operator()(const std::pair<T1, T2>& p) const -> size_t {
-		return std::hash<T1>{}(p.first) ^ std::hash<T2>{}(p.second);
-	}
-};
-
 
 class Board
 {
@@ -26,7 +16,7 @@ public:
 		Tie
 	};
 	typedef std::array<std::array<char, kWidth>, kHeight> BoardContent;
-	typedef std::unordered_set<std::pair<uint16_t, uint16_t>, PairHash> EmptyPositions;
+	typedef std::vector<std::pair<uint16_t, uint16_t>> EmptyPositions;
 
 public:
 	Board();
