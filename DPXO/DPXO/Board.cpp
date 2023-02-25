@@ -20,21 +20,21 @@ bool Board::CheckIfAddOnPos(std::pair<uint16_t, uint16_t> pos)
 
 Board::State Board::GameState()
 {
-	if (m_board[0][0] == m_board[0][1] == m_board[0][2])
+	if (m_board[0][0] == m_board[0][1] && m_board[0][0] == m_board[0][2] && m_board[0][0] != ' ')
 		return State::Win;
-	if (m_board[1][0] == m_board[1][1] == m_board[2][2])
+	if (m_board[1][0] == m_board[1][1] && m_board[1][0] == m_board[2][2] && m_board[1][0] != ' ')
 		return State::Win;
-	if (m_board[2][0] == m_board[2][1] == m_board[2][2])
+	if (m_board[2][0] == m_board[2][1] && m_board[2][0] == m_board[2][2] && m_board[2][0] != ' ')
 		return State::Win;
-	if (m_board[0][0] == m_board[1][0] == m_board[2][0])
+	if (m_board[0][0] == m_board[1][0] && m_board[0][0] == m_board[2][0] && m_board[0][0] != ' ')
 		return State::Win;
-	if (m_board[0][1] == m_board[1][1] == m_board[2][1])
+	if (m_board[0][1] == m_board[1][1] && m_board[0][1] == m_board[2][1] && m_board[0][1] != ' ')
 		return State::Win;
-	if (m_board[0][2] == m_board[1][2] == m_board[2][2])
+	if (m_board[0][2] == m_board[1][2] && m_board[0][2] == m_board[2][2] && m_board[0][2] != ' ')
 		return State::Win;
-	if (m_board[0][0] == m_board[1][1] == m_board[2][2])
+	if (m_board[0][0] == m_board[1][1] && m_board[0][0] == m_board[2][2] && m_board[0][0] != ' ')
 		return State::Win;
-	if (m_board[0][2] == m_board[1][1] == m_board[2][0])
+	if (m_board[0][2] == m_board[1][1] && m_board[0][2] == m_board[2][0] && m_board[0][2] != ' ')
 		return State::Win;
 	if(m_emptyPos.empty())
 		return State::Tie;
