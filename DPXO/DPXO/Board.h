@@ -30,6 +30,8 @@ public:
 
 public:
 	BoardContent GetBoardContent() const;
+	size_t GetBoardWidth() const;
+	size_t GetBoardHeight() const;
 
 public:
 	friend std::ostream& operator<<(std::ostream& os, const Board& board);

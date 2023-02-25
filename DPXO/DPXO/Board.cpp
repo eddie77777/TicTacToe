@@ -46,6 +46,16 @@ Board::BoardContent Board::GetBoardContent() const
 	return m_board;
 }
 
+size_t Board::GetBoardWidth() const
+{
+	return kWidth;
+}
+
+size_t Board::GetBoardHeight() const
+{
+	return kHeight;
+}
+
 void Board::SetContentOnPos(std::pair<uint16_t, uint16_t> pos, char symbol)
 {
 	m_board[pos.first][pos.second] = symbol;

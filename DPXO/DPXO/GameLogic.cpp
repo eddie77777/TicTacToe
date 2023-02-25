@@ -13,7 +13,7 @@ GameLogic::GameLogic(bool isHuman, bool p1Starts)
 		m_player2 = new CPlayer;
 	}
 
-	if (p1Starts)
+	if (p1Starts == 0)
 	{
 		m_player1->SetSymbol(kFirstSymbol);
 		m_player2->SetSymbol(kSecondSymbol);
