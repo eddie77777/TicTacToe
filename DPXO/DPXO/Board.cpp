@@ -1,7 +1,5 @@
 #include "Board.h"
 
-const size_t kCellWidth = 3;
-
 Board::Board()
 {
 	for (uint8_t i = 0; i < m_board.size(); ++i)
