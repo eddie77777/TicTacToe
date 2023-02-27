@@ -32,9 +32,9 @@ GameLogic::~GameLogic()
 	delete m_player2;*/  //dc????????
 }
 
-void GameLogic::PlayerPlacesSymbol(IPlayer* player, std::pair<uint16_t,uint16_t> pos)
+void GameLogic::PlayerPlacesSymbol(IPlayer* player)
 {
-	player->PlaceSymbol(pos, m_board);
+	player->PlaceSymbol(m_board);
 }
 
 IPlayer* GameLogic::GetPlayer2() const
