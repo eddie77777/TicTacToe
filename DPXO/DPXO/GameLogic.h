@@ -14,7 +14,7 @@ public:
 	~GameLogic();
 
 public:
-	void PlayerPlacesSymbol(IPlayer* player, std::pair<uint16_t, uint16_t> pos); //de ce nu il pot face const pe player?
+	void PlayerPlacesSymbol(IPlayer* player); //de ce nu il pot face const pe player?
 
 public:
 	Board GetBoard()const;
