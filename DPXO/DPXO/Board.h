@@ -6,7 +6,7 @@
 
 class Board
 {
-public:
+private:
 	static const size_t kWidth = 3;
 	static const size_t kHeight = 3;
 	static const size_t kSize = kWidth * kHeight;
@@ -31,7 +31,7 @@ public:
 	bool CheckIfAddOnPos(std::pair<uint16_t, uint16_t> pos);
 	State GameState();
 	void SetContentOnPos(std::pair<uint16_t, uint16_t>, char symbol);
-	std::pair<uint16_t, uint16_t> GetARandomEmptyPos();
+	std::pair<uint16_t, uint16_t> GetARandomEmptyPos();//TODO: add const
 
 public:
 	friend std::ostream& operator<<(std::ostream& os, const Board& board);

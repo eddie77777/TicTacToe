@@ -52,10 +52,19 @@ int main()
 		{
 			system("CLS");
 			std::cout << gamelogic.GetBoard();
-			if (whichPlayer % 2 == 1 && isHuman)
+			/*if (whichPlayer % 2 == 1 && isHuman)
 				std::cout << "\n\nPLAYER 1 won!";
 			else
 				if (whichPlayer % 2 == 0 && isHuman)
+					std::cout << "\n\nPLAYER 2 won!";
+				else if (whichPlayer % 2 == 0 && isHuman == 0)
+					std::cout << "\n\nCOMPUTER won!";
+				else 
+					std::cout << "\n\nPLAYER 1 won!";*/
+			if(whichPlayer % 2)
+				std::cout << "\n\nPLAYER 1 won!";
+			else
+				if(isHuman)
 					std::cout << "\n\nPLAYER 2 won!";
 				else
 					std::cout << "\n\nCOMPUTER won!";
