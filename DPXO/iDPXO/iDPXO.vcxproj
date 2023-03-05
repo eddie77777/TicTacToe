@@ -127,9 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="CPlayer.h" />
     <ClInclude Include="IBoard.h" />
     <ClInclude Include="IGameLogic.h" />
     <ClInclude Include="IPlayer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="CPlayer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
