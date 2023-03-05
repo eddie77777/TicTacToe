@@ -2,8 +2,9 @@
 #include <cstdint>
 #include <utility>
 #include "Board.h"
+#include "IPlayer.h"
 
-class IPlayer
+class IPlayer : public IPlayer
 {
 protected:
 	char m_symbol;

@@ -2,8 +2,9 @@
 #include "Board.h"
 #include "CPlayer.h"
 #include "HPlayer.h"
+#include "IGameLogic.h"
 
-class GameLogic
+class GameLogic : public IGameLogic
 {
 private:
 	const char kFirstSymbol = 'X';

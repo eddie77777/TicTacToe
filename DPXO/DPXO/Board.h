@@ -3,8 +3,9 @@
 #include <cstdint>
 #include <vector>
 #include <iostream>
+#include "IBoard.h"
 
-class Board
+class Board : public IBoard
 {
 private:
 	static const size_t kWidth = 3;
