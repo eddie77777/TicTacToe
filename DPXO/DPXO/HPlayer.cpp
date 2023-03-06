@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-bool HPlayer::PlaceSymbol(Board& board)
+bool HPlayer::PlaceSymbol(Game& game)
 {
 	std::pair<uint16_t, uint16_t> pos;
 	std::string s_line, s_column;
@@ -12,17 +12,17 @@ bool HPlayer::PlaceSymbol(Board& board)
 	{
 		std::cin >> s_line;
 		try {
-			size_t maximumBoardHeight = board.GetBoardHeight();
+			size_t maximumBoardHeight = game.GetMatHeight();
 			if (s_line.size() == 1)
 			{
 				line = std::stoi(s_line);
-				if (line < 0 || line > board.GetBoardHeight() - 1)
-					std::cout << "Valoare prea mare. (input maxim: " << board.GetBoardHeight() - 1 << ")";
+				if (line < 0 || line > Board::kHeight - 1)
+					std::cout << "Valoare prea mare. (input maxim: " << game.GetMatHeight() - 1 << ")";
 				else
 					break;
 			}
 			else
-				std::cout << "Valoare prea mare. (input maxim: " << board.GetBoardHeight() - 1 << ")";
+				std::cout << "Valoare prea mare. (input maxim: " << game.GetMatHeight() - 1 << ")";
 		}
 		catch (std::invalid_argument e)
 		{
@@ -34,17 +34,17 @@ bool HPlayer::PlaceSymbol(Board& board)
 		{
 			std::cin >> s_column;
 			try {
-				size_t maximumBoardWidth = board.GetBoardWidth();
+				size_t maximumBoardWidth = game.GetMatWidth();
 				if (s_column.size() == 1)
 				{
 					column = std::stoi(s_column);
-					if (column < 0 || column > board.GetBoardWidth() - 1)
-						std::cout << "Valoare prea mare. (input maxim: " << board.GetBoardWidth() - 1 << ")";
+					if (column < 0 || column > Board::kWidth - 1)
+						std::cout << "Valoare prea mare. (input maxim: " << game.GetMatWidth() - 1 << ")";
 					else
 						break;
 				}
 				else
-					std::cout << "Valoare prea mare. (input maxim: " << board.GetBoardWidth() - 1 << ")";
+					std::cout << "Valoare prea mare. (input maxim: " << game.GetMatWidth() - 1 << ")";
 			}
 			catch (std::invalid_argument e)
 			{
@@ -52,9 +52,9 @@ bool HPlayer::PlaceSymbol(Board& board)
 			}
 
 
-			if (board.CheckIfAddOnPos(pos))
+			if (game.CheckIfAddOnPos(pos))
 			{
-				board.SetContentOnPos(pos, m_symbol);
+				game.SetContentOnPos(pos, m_symbol);
 				return 1;
 			}
 			else return 0;

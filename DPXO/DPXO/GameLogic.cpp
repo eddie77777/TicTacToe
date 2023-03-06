@@ -1,4 +1,6 @@
 #include "GameLogic.h"
+#include "GameLogic.h"
+#include "GameLogic.h"
 #include "CPlayer.h"
 #include "HPlayer.h"
 
@@ -33,6 +35,8 @@ GameLogic::~GameLogic()
 	delete m_player2;*/  //dc????????
 }
 
+
+
 void GameLogic::PlayerPlacesSymbol(IPlayer* player)
 {
 	player->PlaceSymbol(m_board);
@@ -41,7 +45,6 @@ void GameLogic::PlayerPlacesSymbol(IPlayer* player)
 void GameLogic::ShowTable(std::ostream& os)
 {
 	Board::BoardContent bc = m_board.GetBoardContent();
-
 	os << "     " << '|' << "     " << '|' << "     \n";
 	os << "  " << bc[0][0] << "  " << '|' << "  " << bc[0][1] << "  " << '|' << "  " << bc[0][2] << "  \n";
 	os << "     " << '|' << "     " << '|' << "     \n";

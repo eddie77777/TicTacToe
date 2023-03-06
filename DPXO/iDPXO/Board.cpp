@@ -2,69 +2,28 @@
 
 Board::Board()
 {
-	for (uint8_t i = 0; i < m_board.size(); ++i)
-		m_board[i].fill(' ');
-	for (uint8_t i = 0; i < m_board.size(); ++i)
-		for (uint8_t j = 0; j < m_board[i].size(); ++j)
+	for (uint8_t i = 0; i < m_matrix.size(); ++i)
+		m_matrix[i].fill(' ');
+	for (uint8_t i = 0; i < m_matrix.size(); ++i)
+		for (uint8_t j = 0; j < m_matrix[i].size(); ++j)
 			m_emptyPos.push_back({ i,j });
 }
 
-bool Board::CheckIfAddOnPos(std::pair<uint16_t, uint16_t> pos)
+void Board::UpdateBoard(const std::pair<uint16_t, uint16_t> pos, const char symbol)
 {
-	if (m_board[pos.first][pos.second] != ' ')
-		return false;
-	return true;
-}
-
-Board::State Board::GameState()
-{
-	if (m_board[0][0] == m_board[0][1] && m_board[0][0] == m_board[0][2] && m_board[0][0] != ' ')
-		return State::Win;
-	if (m_board[1][0] == m_board[1][1] && m_board[1][0] == m_board[2][2] && m_board[1][0] != ' ')
-		return State::Win;
-	if (m_board[2][0] == m_board[2][1] && m_board[2][0] == m_board[2][2] && m_board[2][0] != ' ')
-		return State::Win;
-	if (m_board[0][0] == m_board[1][0] && m_board[0][0] == m_board[2][0] && m_board[0][0] != ' ')
-		return State::Win;
-	if (m_board[0][1] == m_board[1][1] && m_board[0][1] == m_board[2][1] && m_board[0][1] != ' ')
-		return State::Win;
-	if (m_board[0][2] == m_board[1][2] && m_board[0][2] == m_board[2][2] && m_board[0][2] != ' ')
-		return State::Win;
-	if (m_board[0][0] == m_board[1][1] && m_board[0][0] == m_board[2][2] && m_board[0][0] != ' ')
-		return State::Win;
-	if (m_board[0][2] == m_board[1][1] && m_board[0][2] == m_board[2][0] && m_board[0][2] != ' ')
-		return State::Win;
-	if (m_emptyPos.empty())
-		return State::Tie;
-	return State::Playing;
-}
-
-Board::BoardContent Board::GetBoardContent() const
-{
-	return m_board;
-}
-
-size_t Board::GetBoardWidth() const
-{
-	return kWidth;
-}
-
-size_t Board::GetBoardHeight() const
-{
-	return kHeight;
-}
-
-void Board::SetContentOnPos(std::pair<uint16_t, uint16_t> pos, char symbol)
-{
-	m_board[pos.first][pos.second] = symbol;
+	m_matrix[pos.first][pos.second] = symbol;
 	for (uint8_t i = 0; i < m_emptyPos.size(); ++i)
 		if (m_emptyPos[i] == pos)
 			m_emptyPos.erase(m_emptyPos.begin() + i);
 }
 
-std::pair<uint16_t, uint16_t> Board::GetARandomEmptyPos()
+
+Board::EmptyPositions Board::GetEmptyPositions() const
 {
-	srand(time(NULL));
-	uint16_t randomIndex = rand() % m_emptyPos.size();
-	return m_emptyPos[randomIndex];
+	return m_emptyPos;
+}
+
+Board::BoardContent Board::GetMatrix() const
+{
+	return m_matrix;
 }

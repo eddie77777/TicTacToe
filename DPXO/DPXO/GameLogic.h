@@ -1,8 +1,8 @@
 #pragma once
-#include "IGameLogic.h"
+#include "IGame.h"
 #include "Board.h"
 
-class GameLogic : public IGameLogic
+class GameLogic : public IGame
 {
 private:
 	const char kFirstSymbol = 'X';
@@ -17,9 +17,9 @@ public:
 	void ShowTable(std::ostream& os);
 
 public:
-	Board GetBoard()const;
-	IPlayer* GetPlayer1()const;
-	IPlayer* GetPlayer2()const;
+	Board GetBoard() const;
+	IPlayer* GetPlayer1() const;
+	IPlayer* GetPlayer2() const;
 
 private:
 	Board m_board;
