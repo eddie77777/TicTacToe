@@ -4,7 +4,8 @@
 
 int main()
 {
-	std::cout << "For SINGLE PLAYER press [0] || For MULTI PLAYER press [1]\n";
+	std::cout << "Nu e injoseala";
+	/*std::cout << "For SINGLE PLAYER press [0] || For MULTI PLAYER press [1]\n";
 	bool isHuman;
 	std::cin >> isHuman;
 	std::cout << "Who should start?\nFor PLAYER 1 press [0] || For PLAYER 2 press [1]\n";
@@ -20,7 +21,7 @@ int main()
 			std::cout << "Player 1 turn: \n";
 		if (whichPlayer % 2 == 1)
 			std::cout << "Player 2 turn: \n";
-		std::cout << gamelogic.GetBoard();
+		gamelogic.ShowTable(std::cout);
 		std::cout << '\n';
 		if (whichPlayer % 2 == 0 || isHuman)
 		{
@@ -37,30 +38,21 @@ int main()
 				} while (j > gamelogic.GetBoard().GetBoardWidth() - 1);
 			} while (!gamelogic.GetBoard().CheckIfAddOnPos({ i,j }));
 			if (whichPlayer % 2 == 0)
-				gamelogic.PlayerPlacesSymbol(gamelogic.GetPlayer1(), { i,j });
+				gamelogic.PlayerPlacesSymbol(gamelogic.GetPlayer1());
 			else
-				gamelogic.PlayerPlacesSymbol(gamelogic.GetPlayer2(), { i,j });
+				gamelogic.PlayerPlacesSymbol(gamelogic.GetPlayer2());
 			++whichPlayer;
 		}
 		else
 		{
-			gamelogic.PlayerPlacesSymbol(gamelogic.GetPlayer2(), { 0,0 });
+			gamelogic.PlayerPlacesSymbol(gamelogic.GetPlayer2());
 			++whichPlayer;
 		}
 
 		if (gamelogic.GetBoard().GameState() == Board::State::Win)
 		{
 			system("CLS");
-			std::cout << gamelogic.GetBoard();
-			/*if (whichPlayer % 2 == 1 && isHuman)
-				std::cout << "\n\nPLAYER 1 won!";
-			else
-				if (whichPlayer % 2 == 0 && isHuman)
-					std::cout << "\n\nPLAYER 2 won!";
-				else if (whichPlayer % 2 == 0 && isHuman == 0)
-					std::cout << "\n\nCOMPUTER won!";
-				else 
-					std::cout << "\n\nPLAYER 1 won!";*/
+			gamelogic.ShowTable(std::cout);
 			if(whichPlayer % 2)
 				std::cout << "\n\nPLAYER 1 won!";
 			else
@@ -73,12 +65,12 @@ int main()
 		if (gamelogic.GetBoard().GameState() == Board::State::Tie)
 		{
 			system("CLS");
-			std::cout << gamelogic.GetBoard();
+			gamelogic.ShowTable(std::cout);
 			std::cout << "Tied";
 			return 0;
 		}
 
 		std::cout << "\n\n";
-	}
+	}*/
 	//TODO: destructori, verificari pt datele introduse ( linie, coloana inexistenta sau ocupata )
 }

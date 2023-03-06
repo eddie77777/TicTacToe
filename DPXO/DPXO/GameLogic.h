@@ -1,8 +1,6 @@
 #pragma once
-#include "Board.h"
-#include "CPlayer.h"
-#include "HPlayer.h"
 #include "IGameLogic.h"
+#include "Board.h"
 
 class GameLogic : public IGameLogic
 {
@@ -16,6 +14,7 @@ public:
 
 public:
 	void PlayerPlacesSymbol(IPlayer* player); //de ce nu il pot face const pe player?
+	void ShowTable(std::ostream& os);
 
 public:
 	Board GetBoard()const;

@@ -1,7 +1,7 @@
 #pragma once
 #include "IPlayer.h"
 
-class CPlayer : virtual public IPlayer
+class CPlayer : public IPlayer
 {
 private:
 	char m_symbol;

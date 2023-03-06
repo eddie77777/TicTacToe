@@ -68,21 +68,3 @@ std::pair<uint16_t, uint16_t> Board::GetARandomEmptyPos()
 	uint16_t randomIndex = rand() % m_emptyPos.size();
 	return m_emptyPos[randomIndex];
 }
-
-std::ostream& operator<<(std::ostream& os, const Board& board)
-{
-	Board::BoardContent bc = board.GetBoardContent();
-
-	os << "     " << '|' << "     " << '|' << "     \n";
-	os << "  " << bc[0][0] << "  " << '|' << "  " << bc[0][1] << "  " << '|' << "  " << bc[0][2] << "  \n";
-	os << "     " << '|' << "     " << '|' << "     \n";
-	os << "-----" << '|' << "-----" << '|' << "-----\n";
-	os << "     " << '|' << "     " << '|' << "     \n";
-	os << "  " << bc[1][0] << "  " << '|' << "  " << bc[1][1] << "  " << '|' << "  " << bc[1][2] << "  \n";
-	os << "     " << '|' << "     " << '|' << "     \n";
-	os << "-----" << '|' << "-----" << '|' << "-----\n";
-	os << "     " << '|' << "     " << '|' << "     \n";
-	os << "  " << bc[2][0] << "  " << '|' << "  " << bc[2][1] << "  " << '|' << "  " << bc[2][2] << "  \n";
-	os << "     " << '|' << "     " << '|' << "     \n";
-	return os;
-}
