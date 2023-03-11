@@ -22,7 +22,7 @@ public:
 	//Getters
 	EmptyPositions GetEmptyPositions() const;
 	BoardContent GetMatrix() const;
-
+	
 private:
 	//Members
 	BoardContent m_matrix;

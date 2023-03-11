@@ -33,6 +33,21 @@ BoardState Game::GameState() const
 	return BoardState::Playing;
 }
 
+Board Game::GetBoard() const
+{
+	return m_board;
+}
+
+size_t Game::GetMatWidth()
+{
+	return kWidth;
+}
+
+size_t Game::GetMatHeight()
+{
+	return kHeight;
+}
+
 void Game::SetContentOnPos(const std::pair<uint16_t, uint16_t> pos, const char symbol)
 {
 	m_board.UpdateBoard(pos, symbol);
@@ -43,14 +58,4 @@ std::pair<uint16_t, uint16_t> Game::GetARandomEmptyPos() const
 	srand(time(NULL));
 	uint16_t randomIndex = rand() % m_board.GetEmptyPositions().size();
 	return m_board.GetEmptyPositions()[randomIndex];
-}
-
-size_t GetMatWidth()
-{
-	return kWidth;
-}
-
-size_t GetMatHeight()
-{
-	return kHeight;
 }

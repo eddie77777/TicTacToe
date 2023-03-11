@@ -13,6 +13,7 @@ public:
 	std::pair<uint16_t, uint16_t> GetARandomEmptyPos() const;
 	BoardState GameState() const;
 
+	Board GetBoard() const;
 	size_t GetMatWidth();
 	size_t GetMatHeight();
 	

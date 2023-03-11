@@ -1,28 +1,21 @@
 #pragma once
-#include "IGame.h"
-#include "Board.h"
+#include "Game.h"
+#include <iostream>
 
-class GameLogic : public IGame
+class GameLogic
 {
 private:
 	const char kFirstSymbol = 'X';
 	const char kSecondSymbol = '0';
 
 public:
-	GameLogic(bool isHuman, bool p1Starts);
+	GameLogic() = default;
 	~GameLogic();
 
 public:
-	void PlayerPlacesSymbol(IPlayer* player); //de ce nu il pot face const pe player?
 	void ShowTable(std::ostream& os);
 
-public:
-	Board GetBoard() const;
-	IPlayer* GetPlayer1() const;
-	IPlayer* GetPlayer2() const;
-
+	Game& GetGame();
 private:
-	Board m_board;
-	IPlayer* m_player1;
-	IPlayer* m_player2;
+	Game m_game;
 };

@@ -1,10 +1,21 @@
 #include <iostream>
+#include "HPlayer.h"
 #include "GameLogic.h"
 #include < stdlib.h >
 
 int main()
 {
-	std::cout << "Nu e injoseala";
+	GameLogic gamelogic;
+	HPlayer player;
+	player.SetSymbol('X');
+	HPlayer player2;
+	player.SetSymbol('0');
+	while (gamelogic.GetGame().GameState() == BoardState::Playing)
+	{
+		player.PlaceSymbol(gamelogic.GetGame());
+	}
+
+
 	/*std::cout << "For SINGLE PLAYER press [0] || For MULTI PLAYER press [1]\n";
 	bool isHuman;
 	std::cin >> isHuman;

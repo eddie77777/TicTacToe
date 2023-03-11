@@ -28,37 +28,37 @@ bool HPlayer::PlaceSymbol(Game& game)
 		{
 			std::cout << "Argument invalid";
 		}
+	}
 
-		std::cout << "column: ";
-		while (true)
-		{
-			std::cin >> s_column;
-			try {
-				size_t maximumBoardWidth = game.GetMatWidth();
-				if (s_column.size() == 1)
-				{
-					column = std::stoi(s_column);
-					if (column < 0 || column > Board::kWidth - 1)
-						std::cout << "Valoare prea mare. (input maxim: " << game.GetMatWidth() - 1 << ")";
-					else
-						break;
-				}
-				else
+	std::cout << "column: ";
+	while (true)
+	{
+		std::cin >> s_column;
+		try {
+			size_t maximumBoardWidth = game.GetMatWidth();
+			if (s_column.size() == 1)
+			{
+				column = std::stoi(s_column);
+				if (column < 0 || column > Board::kWidth - 1)
 					std::cout << "Valoare prea mare. (input maxim: " << game.GetMatWidth() - 1 << ")";
+				else
+					break;
 			}
-			catch (std::invalid_argument e)
-			{
-				std::cout << "Argument invalid";
-			}
-
-
-			if (game.CheckIfAddOnPos(pos))
-			{
-				game.SetContentOnPos(pos, m_symbol);
-				return 1;
-			}
-			else return 0;
+			else
+				std::cout << "Valoare prea mare. (input maxim: " << game.GetMatWidth() - 1 << ")";
 		}
+		catch (std::invalid_argument e)
+		{
+			std::cout << "Argument invalid";
+		}
+
+
+		if (game.CheckIfAddOnPos(pos))
+		{
+			game.SetContentOnPos(pos, m_symbol);
+			return 1;
+		}
+		else return 0;
 	}
 }
 
