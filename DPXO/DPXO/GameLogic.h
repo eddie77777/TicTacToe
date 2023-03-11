@@ -13,7 +13,7 @@ public:
 	~GameLogic();
 
 public:
-	void ShowTable(std::ostream& os);
+	void ShowTable(std::ostream& os, uint16_t whoIsPlacing);
 
 	Game& GetGame();
 private:

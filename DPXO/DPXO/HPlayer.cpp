@@ -10,42 +10,54 @@ bool HPlayer::PlaceSymbol(Game& game)
 	std::cout << "line: ";
 	while (true)
 	{
-		std::cin >> s_line;
+		std::getline(std::cin, s_line);
 		try {
 			size_t maximumBoardHeight = game.GetMatHeight();
 			if (s_line.size() == 1)
 			{
 				line = std::stoi(s_line);
 				if (line < 0 || line > Board::kHeight - 1)
-					std::cout << "Valoare prea mare. (input maxim: " << game.GetMatHeight() - 1 << ")";
+				{
+					std::cout << "Valoare prea mare. (input maxim: " << game.GetMatHeight() - 1 << ")\n";
+					std::cout << "line: ";
+				}
 				else
 					break;
 			}
 			else
-				std::cout << "Valoare prea mare. (input maxim: " << game.GetMatHeight() - 1 << ")";
+			{
+				std::cout << "Valoare prea mare. (input maxim: " << game.GetMatHeight() - 1 << ")\n";
+				std::cout << "line: ";
+			}
 		}
 		catch (std::invalid_argument e)
 		{
 			std::cout << "Argument invalid";
 		}
 	}
-
+	
 	std::cout << "column: ";
 	while (true)
 	{
-		std::cin >> s_column;
+		std::getline(std::cin, s_column);
 		try {
 			size_t maximumBoardWidth = game.GetMatWidth();
 			if (s_column.size() == 1)
 			{
 				column = std::stoi(s_column);
 				if (column < 0 || column > Board::kWidth - 1)
-					std::cout << "Valoare prea mare. (input maxim: " << game.GetMatWidth() - 1 << ")";
+				{
+					std::cout << "Valoare prea mare. (input maxim: " << game.GetMatWidth() - 1 << ")\n";
+					std::cout << "column: ";
+				}
 				else
 					break;
 			}
 			else
-				std::cout << "Valoare prea mare. (input maxim: " << game.GetMatWidth() - 1 << ")";
+			{
+				std::cout << "Valoare prea mare. (input maxim: " << game.GetMatWidth() - 1 << ")\n";
+				std::cout << "column: ";
+			}
 		}
 		catch (std::invalid_argument e)
 		{

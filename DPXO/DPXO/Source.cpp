@@ -12,10 +12,27 @@ int main()
 	player2.SetSymbol('0');
 	while (gamelogic.GetGame().GameState() == BoardState::Playing)
 	{
+		system("CLS");
+		gamelogic.ShowTable(std::cout, 1);
 		player1.PlaceSymbol(gamelogic.GetGame());
-		gamelogic.ShowTable(std::cout);
+		if (gamelogic.GetGame().GameState() == BoardState::Win)
+		{
+			std::cout << "Player 1 won!";
+			return 0;
+		}
+		system("CLS");
+		gamelogic.ShowTable(std::cout, 2);
 		player2.PlaceSymbol(gamelogic.GetGame());
-		gamelogic.ShowTable(std::cout);
+		if (gamelogic.GetGame().GameState() == BoardState::Win)
+		{
+			std::cout << "Player 2 won!";
+			return 0;
+		}
+		if (gamelogic.GetGame().GameState() == BoardState::Tie)
+		{
+			std::cout << "Egalitate";
+			return 0;
+		}
 	}
 
 

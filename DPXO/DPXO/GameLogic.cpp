@@ -8,8 +8,10 @@ GameLogic::~GameLogic()
 	delete m_player2;*/  //dc????????
 }
 
-void GameLogic::ShowTable(std::ostream& os)
+void GameLogic::ShowTable(std::ostream& os, uint16_t whoIsPlacing)
 {
+	os << "Player " << whoIsPlacing << "'s turn.\n";
+
 	Board::BoardContent bc = m_game.GetBoard().GetMatrix();
 	os << "     " << '|' << "     " << '|' << "     \n";
 	os << "  " << bc[0][0] << "  " << '|' << "  " << bc[0][1] << "  " << '|' << "  " << bc[0][2] << "  \n";
