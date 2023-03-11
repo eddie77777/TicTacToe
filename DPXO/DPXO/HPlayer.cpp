@@ -51,15 +51,15 @@ bool HPlayer::PlaceSymbol(Game& game)
 		{
 			std::cout << "Argument invalid";
 		}
-
-
-		if (game.CheckIfAddOnPos(pos))
-		{
-			game.SetContentOnPos(pos, m_symbol);
-			return 1;
-		}
-		else return 0;
 	}
+	pos.first = line;
+	pos.second = column;
+	if (game.CheckIfAddOnPos(pos))
+	{
+		game.SetContentOnPos(pos, m_symbol);
+		return 1;
+	}
+	else return 0;
 }
 
 void HPlayer::SetSymbol(const char newSymbol)

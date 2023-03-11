@@ -6,13 +6,16 @@
 int main()
 {
 	GameLogic gamelogic;
-	HPlayer player;
-	player.SetSymbol('X');
+	HPlayer player1;
+	player1.SetSymbol('X');
 	HPlayer player2;
-	player.SetSymbol('0');
+	player2.SetSymbol('0');
 	while (gamelogic.GetGame().GameState() == BoardState::Playing)
 	{
-		player.PlaceSymbol(gamelogic.GetGame());
+		player1.PlaceSymbol(gamelogic.GetGame());
+		gamelogic.ShowTable(std::cout);
+		player2.PlaceSymbol(gamelogic.GetGame());
+		gamelogic.ShowTable(std::cout);
 	}
 
 
