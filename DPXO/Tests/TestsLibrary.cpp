@@ -68,9 +68,9 @@ TEST(GetARandomEmptyPos, Game)
             game.SetContentOnPos({ i,j }, symbol);
 
     pos = game.GetARandomEmptyPos();
-    
     EXPECT_TRUE( pos == pos1 || pos == pos2);
 }
+
 
 
 
