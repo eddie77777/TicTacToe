@@ -10,7 +10,6 @@ private:
 
 public:
 	GameLogic() = default;
-	~GameLogic();
 
 public:
 	void ShowTable(std::ostream& os, uint16_t whoIsPlacing);

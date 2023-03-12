@@ -2,12 +2,6 @@
 #include "CPlayer.h"
 #include "HPlayer.h"
 
-GameLogic::~GameLogic()
-{
-	/*delete m_player1;
-	delete m_player2;*/  //dc????????
-}
-
 void GameLogic::ShowTable(std::ostream& os, uint16_t whoIsPlacing)
 {
 	os << "Player " << whoIsPlacing << "'s turn.\n";
