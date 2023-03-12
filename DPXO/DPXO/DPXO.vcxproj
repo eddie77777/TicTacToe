@@ -143,11 +143,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConsoleListener.cpp" />
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="HPlayer.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConsoleListener.h" />
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="HPlayer.h" />
   </ItemGroup>

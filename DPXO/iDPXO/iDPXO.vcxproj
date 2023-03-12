@@ -135,6 +135,7 @@
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="IGame.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="IGameListener.h" />
     <ClInclude Include="IPlayer.h" />
   </ItemGroup>
   <ItemGroup>
