@@ -44,18 +44,16 @@ uint16_t ReadPos(std::string s_input, Game& game, std::string axis)
 
 bool HPlayer::PlaceSymbol(Game& game)
 {
-	std::pair<uint16_t, uint16_t> pos;
 	std::string s_line, s_column;
-	uint16_t line = ReadPos(s_line, game, "line");
-	uint16_t column = ReadPos(s_column, game, "column");
-	pos.first = line;
-	pos.second = column;
-	if (game.CheckIfAddOnPos(pos))
+	uint16_t line = -1;
+	uint16_t column = -1;
+	while (!game.CheckIfAddOnPos({ line, column }))
 	{
-		game.SetContentOnPos(pos, m_symbol);
-		return 1;
+		line = ReadPos(s_line, game, "line");
+		column = ReadPos(s_column, game, "column");
 	}
-	else return 0;
+	game.SetContentOnPos({ line, column }, m_symbol);
+	return 1;
 }
 
 void HPlayer::SetSymbol(const char newSymbol)

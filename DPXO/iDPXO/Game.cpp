@@ -4,7 +4,8 @@
 
 bool Game::CheckIfAddOnPos(const std::pair<uint16_t, uint16_t> pos) const
 {
-
+	if (pos.first == -1 || pos.second == -1)
+		return false;
 	if (m_board.GetMatrix()[pos.first][pos.second] != ' ')
 		return false;
 	return true;
@@ -12,30 +13,64 @@ bool Game::CheckIfAddOnPos(const std::pair<uint16_t, uint16_t> pos) const
 
 BoardState Game::GameState() const 
 {
+	uint16_t state = 0;
 	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][1] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][2] && m_board.GetMatrix()[0][0] != ' ')
-		return BoardState::Win;
+		state = 1;
 	if (m_board.GetMatrix()[1][0] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[1][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[1][0] != ' ')
-		return BoardState::Win;
+		state = 1;
 	if (m_board.GetMatrix()[2][0] == m_board.GetMatrix()[2][1] && m_board.GetMatrix()[2][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[2][0] != ' ')
-		return BoardState::Win;
+		state = 1;
 	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[1][0] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[2][0] && m_board.GetMatrix()[0][0] != ' ')
-		return BoardState::Win;
+		state = 1;
 	if (m_board.GetMatrix()[0][1] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][1] == m_board.GetMatrix()[2][1] && m_board.GetMatrix()[0][1] != ' ')
-		return BoardState::Win;
+		state = 1;
 	if (m_board.GetMatrix()[0][2] == m_board.GetMatrix()[1][2] && m_board.GetMatrix()[0][2] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[0][2] != ' ')
-		return BoardState::Win;
+		state = 1;
 	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[0][0] != ' ')
-		return BoardState::Win;
+		state = 1;
 	if (m_board.GetMatrix()[0][2] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][2] == m_board.GetMatrix()[2][0] && m_board.GetMatrix()[0][2] != ' ')
-		return BoardState::Win;
+		state = 1;
 	if (m_board.GetEmptyPositions().empty())
-		return BoardState::Tie;
+		state = 2;
+	if (state != 0)
+	{
+		for (auto obs : m_observers)
+			if (auto sp = obs.lock())
+			{
+				sp->OnGameOver();
+			}
+		if (state == 1)
+			return BoardState::Win;
+		else
+			return BoardState::Tie;
+	}
 	return BoardState::Playing;
 }
 
-Board Game::GetBoard() const
+void Game::AddListener(IGameListenerPtr observer)
 {
-	return m_board;
+	m_observers.push_back(observer);
+}
+
+void Game::RemoveListener(IGameListener* observer)
+{
+	for (auto it = m_observers.begin(); it != m_observers.end(); )
+	{
+		if (auto sp = it->lock())
+		{
+			if (sp.get() == observer)
+				it = m_observers.erase(it);
+			else
+				it++;
+		}
+		else
+			it = m_observers.erase(it);
+	}
+}
+
+Board::BoardContent Game::GetBoard() const
+{
+	return m_board.GetMatrix();
 }
 
 size_t Game::GetMatWidth()
@@ -51,6 +86,11 @@ size_t Game::GetMatHeight()
 void Game::SetContentOnPos(const std::pair<uint16_t, uint16_t> pos, const char symbol)
 {
 	m_board.UpdateBoard(pos, symbol);
+	for(auto obs : m_observers)
+		if (auto sp = obs.lock())
+		{
+			sp->OnMakeMove();
+		}
 }
 
 std::pair<uint16_t, uint16_t> Game::GetARandomEmptyPos() const
