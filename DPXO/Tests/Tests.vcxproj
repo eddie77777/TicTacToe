@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="TestsConsole.cpp" />
+    <ClCompile Include="TestsLibrary.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DPXO\DPXO.vcxproj">

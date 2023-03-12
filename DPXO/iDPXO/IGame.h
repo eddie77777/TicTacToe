@@ -17,8 +17,8 @@ public:
 	IGame() = default;
 
 public:
-	bool CheckIfAddOnPos(const std::pair<uint16_t, uint16_t> pos) const;
-	void SetContentOnPos(const std::pair<uint16_t, uint16_t> pos, char symbol);
-	std::pair<uint16_t, uint16_t> GetARandomEmptyPos() const;
+	virtual bool CheckIfAddOnPos(const std::pair<uint16_t, uint16_t> pos) const = 0;
+	virtual void SetContentOnPos(const std::pair<uint16_t, uint16_t> pos, char symbol) = 0;
+	virtual std::pair<uint16_t, uint16_t> GetARandomEmptyPos() const = 0;
 	virtual BoardState GameState() const = 0;
 };
