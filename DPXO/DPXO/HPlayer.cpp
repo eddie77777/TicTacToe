@@ -45,10 +45,11 @@ uint16_t ReadPos(std::string s_input, Game& game, std::string axis)
 bool HPlayer::PlaceSymbol(Game& game)
 {
 	std::string s_line, s_column;
-	uint16_t line = -1;
-	uint16_t column = -1;
-	while (!game.CheckIfAddOnPos({ line, column }))
+	uint16_t line = ReadPos(s_line, game, "line");
+	uint16_t column = ReadPos(s_column, game, "column");
+	while (!game.CheckIfAddOnPos({ line , column }))
 	{
+		std::cout << "Position already filled\n";
 		line = ReadPos(s_line, game, "line");
 		column = ReadPos(s_column, game, "column");
 	}
