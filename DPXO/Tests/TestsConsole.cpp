@@ -1,9 +1,23 @@
 #include <gtest/gtest.h>
+#include "Hplayer.h"
+#include "GameLogic.h"
+#include "Game.h"
 #include <iostream>
+#include <string>
 
-TEST(TestGTest, test)
+TEST(ValidHPlayerInput, test)
 {
-    EXPECT_EQ(1, 1);
+    //GameLogic game;
+    std::string lineInput("0");
+    std::string columnInput("0");
+    std::istringstream inputStream(lineInput);
+    std::istringstream inputStream1(columnInput);
+    //HPlayer player;
+    //game.GetGame();
+    Game game;
+    game.GameState();
+
+    EXPECT_EQ(0,0);
 }
 
 int main(int argc, char** argv)

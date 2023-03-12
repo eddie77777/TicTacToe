@@ -8,7 +8,7 @@ private:
 	char m_symbol;
 public:
 	HPlayer() = default;
-	virtual bool PlaceSymbol(Game& game);
-	void SetSymbol(const char newSymbol);
+	virtual bool PlaceSymbol(Game& game) override;
+	void SetSymbol(const char newSymbol) override;
 };
 
