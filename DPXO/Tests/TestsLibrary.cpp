@@ -71,9 +71,64 @@ TEST(GetARandomEmptyPos, Game)
     EXPECT_TRUE( pos == pos1 || pos == pos2);
 }
 
+TEST(GameStateWinRow, Game)
+{
+    const char symbol = 'X';
+    Game game;
+    for (uint16_t i = 0; i < 3; ++i)
+        game.SetContentOnPos({ 0,i }, symbol);
+
+    EXPECT_EQ(game.GameState(),BoardState::Win);
+}
+
+TEST(GameStateWinColumn, Game)
+{
+    const char symbol = 'X';
+    Game game;
+    for (uint16_t i = 0; i < 3; ++i)
+        game.SetContentOnPos({ i,0 }, symbol);
+
+    EXPECT_EQ(game.GameState(), BoardState::Win);
+}
+
+TEST(GameStateWinPrincipalDiagonal, Game)
+{
+    const char symbol = 'X';
+    Game game;
+    for (uint16_t i = 0; i < 3; ++i)
+        game.SetContentOnPos({ i,i }, symbol);
+
+    EXPECT_EQ(game.GameState(), BoardState::Win);
+}
+
+TEST(GameStateWinSecondarylDiagonal, Game)
+{
+    const char symbol = 'X';
+    Game game;
+    for (uint16_t i = 0; i < 3; ++i)
+        game.SetContentOnPos({ i,2 - i }, symbol);
+
+    EXPECT_EQ(game.GameState(), BoardState::Win);
+}
 
 
+TEST(GameStateTie, Game)
+{
+    const char symbol1 = 'X';
+    const char symbol2 = '0';
+    Game game;
+    game.SetContentOnPos({ 0,0 }, symbol1);
+    game.SetContentOnPos({ 0,1 }, symbol1);
+    game.SetContentOnPos({ 0,2 }, symbol2);
+    game.SetContentOnPos({ 1,0 }, symbol2);
+    game.SetContentOnPos({ 1,1 }, symbol2);
+    game.SetContentOnPos({ 1,2 }, symbol1);
+    game.SetContentOnPos({ 2,0 }, symbol1);
+    game.SetContentOnPos({ 2,1 }, symbol2);
+    game.SetContentOnPos({ 2,2 }, symbol1);
 
+    EXPECT_EQ(game.GameState(), BoardState::Tie);
+}
 
 int main(int argc, char** argv)
 {
