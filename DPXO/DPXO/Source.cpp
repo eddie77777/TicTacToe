@@ -1,7 +1,29 @@
 #include <iostream>
 #include "HPlayer.h"
 #include "GameLogic.h"
-#include < stdlib.h >
+#include <stdlib.h>
+
+bool PlayerMove(GameLogic& gamelogic, HPlayer player, uint16_t whoIsPlacing)
+{
+	system("CLS");
+	gamelogic.ShowTable(std::cout, whoIsPlacing);
+	player.PlaceSymbol(gamelogic.GetGame());
+	if (gamelogic.GetGame().GameState() == BoardState::Win)
+	{
+		system("CLS");
+		gamelogic.ShowTable(std::cout, whoIsPlacing);
+		std::cout << "Player " << whoIsPlacing << " won!";
+		return 0;
+	}
+	if (gamelogic.GetGame().GameState() == BoardState::Tie)
+	{
+		system("CLS");
+		gamelogic.ShowTable(std::cout, whoIsPlacing);
+		std::cout << "Tie!";
+		return 0;
+	}
+	return 1;
+}
 
 int main()
 {
@@ -10,28 +32,14 @@ int main()
 	player1.SetSymbol('X');
 	HPlayer player2;
 	player2.SetSymbol('0');
+	uint16_t whoIsPlacing;
 	while (gamelogic.GetGame().GameState() == BoardState::Playing)
 	{
-		system("CLS");
-		gamelogic.ShowTable(std::cout, 1);
-		player1.PlaceSymbol(gamelogic.GetGame());
-		if (gamelogic.GetGame().GameState() == BoardState::Win)
+		whoIsPlacing = 1;
+		if (PlayerMove(gamelogic, player1, whoIsPlacing)) //Player 2 va mai muta doar daca nu s-a terminat jocul aici.
 		{
-			std::cout << "Player 1 won!";
-			return 0;
-		}
-		system("CLS");
-		gamelogic.ShowTable(std::cout, 2);
-		player2.PlaceSymbol(gamelogic.GetGame());
-		if (gamelogic.GetGame().GameState() == BoardState::Win)
-		{
-			std::cout << "Player 2 won!";
-			return 0;
-		}
-		if (gamelogic.GetGame().GameState() == BoardState::Tie)
-		{
-			std::cout << "Egalitate";
-			return 0;
+			whoIsPlacing = 2;
+			PlayerMove(gamelogic, player2, whoIsPlacing);
 		}
 	}
 
