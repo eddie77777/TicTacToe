@@ -1,4 +1,5 @@
 #include "Board.h"
+#include <random>
 
 Board::Board()
 {
@@ -9,7 +10,7 @@ Board::Board()
 			m_emptyPos.push_back({ i,j });
 }
 
-void Board::UpdateBoard(const std::pair<uint16_t, uint16_t> pos, const char symbol)
+void Board::UpdateBoard(Pos pos, char symbol)
 {
 	m_matrix[pos.first][pos.second] = symbol;
 	for (uint8_t i = 0; i < m_emptyPos.size(); ++i)
@@ -18,12 +19,29 @@ void Board::UpdateBoard(const std::pair<uint16_t, uint16_t> pos, const char symb
 }
 
 
-Board::EmptyPositions Board::GetEmptyPositions() const
+Pos Board::GetARandomEmptyPos() const
+{
+	srand(time(NULL));
+	uint16_t randomIndex = rand() % m_emptyPos.size();
+	return m_emptyPos[randomIndex];
+}
+
+EmptyPositions Board::GetEmptyPositions() const
 {
 	return m_emptyPos;
 }
 
-Board::BoardContent Board::GetMatrix() const
+BoardContent Board::GetMatrix() const
 {
 	return m_matrix;
+}
+
+size_t Board::GetMatWidth()
+{
+	return kWidth;
+}
+
+size_t Board::GetMatHeight()
+{
+	return kHeight;
 }

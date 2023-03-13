@@ -8,12 +8,12 @@ ConsoleListener::ConsoleListener(int no, Game* game)
 
 }
 
-void ConsoleListener::OnMakeMove()
+void ConsoleListener::OnMakeMove(Pos pos, int currentPlayer)
 {
 	std::cout << "GameObserver" << m_no << "::OnMakeMove";
 }
 
-void ConsoleListener::OnGameOver()
+void ConsoleListener::OnGameOver(int currentPlayer, EGameState gameState)
 {
 	std::cout << "GameObserver" << m_no << "::OnGameOver";
 }

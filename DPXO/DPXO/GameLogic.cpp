@@ -2,11 +2,16 @@
 #include "CPlayer.h"
 #include "HPlayer.h"
 
+GameLogic::GameLogic()
+{
+	m_game = IGame::Produce();
+}
+
 void GameLogic::ShowTable(std::ostream& os, uint16_t whoIsPlacing)
 {
 	os << "Player " << whoIsPlacing << "'s turn.\n";
 
-	Board::BoardContent bc = m_game.GetBoard();
+	BoardContent bc = m_game->GetBoardContent();
 	os << "     " << '|' << "     " << '|' << "     \n";
 	os << "  " << bc[0][0] << "  " << '|' << "  " << bc[0][1] << "  " << '|' << "  " << bc[0][2] << "  \n";
 	os << "     " << '|' << "     " << '|' << "     \n";
@@ -18,9 +23,4 @@ void GameLogic::ShowTable(std::ostream& os, uint16_t whoIsPlacing)
 	os << "     " << '|' << "     " << '|' << "     \n";
 	os << "  " << bc[2][0] << "  " << '|' << "  " << bc[2][1] << "  " << '|' << "  " << bc[2][2] << "  \n";
 	os << "     " << '|' << "     " << '|' << "     \n";
-}
-
-Game& GameLogic::GetGame()
-{
-	return m_game;
 }

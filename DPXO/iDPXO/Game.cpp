@@ -1,8 +1,6 @@
 #include "Game.h"
-#include <random>
 
-
-bool Game::CheckIfAddOnPos(const std::pair<uint16_t, uint16_t> pos) const
+bool Game::CheckIfAddOnPos(Pos pos) const
 {
 	if (pos.first == -1 || pos.second == -1)
 		return false;
@@ -11,40 +9,70 @@ bool Game::CheckIfAddOnPos(const std::pair<uint16_t, uint16_t> pos) const
 	return true;
 }
 
-BoardState Game::GameState() const 
+EMoveResult Game::MakeMove(Pos position, EGameMode gameMode)
 {
-	uint16_t state = 0;
-	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][1] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][2] && m_board.GetMatrix()[0][0] != ' ')
-		state = 1;
-	if (m_board.GetMatrix()[1][0] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[1][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[1][0] != ' ')
-		state = 1;
-	if (m_board.GetMatrix()[2][0] == m_board.GetMatrix()[2][1] && m_board.GetMatrix()[2][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[2][0] != ' ')
-		state = 1;
-	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[1][0] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[2][0] && m_board.GetMatrix()[0][0] != ' ')
-		state = 1;
-	if (m_board.GetMatrix()[0][1] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][1] == m_board.GetMatrix()[2][1] && m_board.GetMatrix()[0][1] != ' ')
-		state = 1;
-	if (m_board.GetMatrix()[0][2] == m_board.GetMatrix()[1][2] && m_board.GetMatrix()[0][2] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[0][2] != ' ')
-		state = 1;
-	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[0][0] != ' ')
-		state = 1;
-	if (m_board.GetMatrix()[0][2] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][2] == m_board.GetMatrix()[2][0] && m_board.GetMatrix()[0][2] != ' ')
-		state = 1;
-	if (m_board.GetEmptyPositions().empty())
-		state = 2;
-	if (state != 0)
+	char symbol;
+	if (m_moveNo % 2 == 0)
+		symbol = 'X';
+	else
+		symbol = '0';
+	if (gameMode == EGameMode::Multiplayer)
 	{
-		for (auto obs : m_observers)
-			if (auto sp = obs.lock())
-			{
-				sp->OnGameOver();
-			}
-		if (state == 1)
-			return BoardState::Win;
+		if (CheckIfAddOnPos(position))
+		{
+			SetContentOnPos(position, symbol);
+			return EMoveResult::Success;
+		}
 		else
-			return BoardState::Tie;
+			return EMoveResult::Fail;
 	}
-	return BoardState::Playing;
+	else
+	{
+		if (CheckIfAddOnPos(position))
+		{
+			SetContentOnPos(position, symbol);
+			return EMoveResult::Success;
+		}
+		else
+			return EMoveResult::Fail;
+		SetContentOnPos(m_board.GetARandomEmptyPos(), symbol);
+		m_moveNo++;
+
+	}
+	m_moveNo++;
+}
+
+BoardContent Game::GetBoardContent()
+{
+	return m_board.GetMatrix();
+}
+
+IGamePtr IGame::Produce()
+{
+	return std::make_shared<Game>();
+}
+
+EGameState Game::GetGameState() const
+{
+	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][1] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][2] && m_board.GetMatrix()[0][0] != ' ')
+		return EGameState::Win;
+	if (m_board.GetMatrix()[1][0] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[1][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[1][0] != ' ')
+		return EGameState::Win;
+	if (m_board.GetMatrix()[2][0] == m_board.GetMatrix()[2][1] && m_board.GetMatrix()[2][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[2][0] != ' ')
+		return EGameState::Win;
+	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[1][0] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[2][0] && m_board.GetMatrix()[0][0] != ' ')
+		return EGameState::Win;
+	if (m_board.GetMatrix()[0][1] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][1] == m_board.GetMatrix()[2][1] && m_board.GetMatrix()[0][1] != ' ')
+		return EGameState::Win;
+	if (m_board.GetMatrix()[0][2] == m_board.GetMatrix()[1][2] && m_board.GetMatrix()[0][2] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[0][2] != ' ')
+		return EGameState::Win;
+	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[0][0] != ' ')
+		return EGameState::Win;
+	if (m_board.GetMatrix()[0][2] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][2] == m_board.GetMatrix()[2][0] && m_board.GetMatrix()[0][2] != ' ')
+		return EGameState::Win;
+	if (m_board.GetEmptyPositions().empty())
+		return EGameState::Tie;
+	return EGameState::Playing;
 }
 
 void Game::AddListener(IGameListenerPtr observer)
@@ -68,34 +96,17 @@ void Game::RemoveListener(IGameListener* observer)
 	}
 }
 
-Board::BoardContent Game::GetBoard() const
+uint16_t Game::GetMoveNo()
 {
-	return m_board.GetMatrix();
+	return m_moveNo;
 }
 
-size_t Game::GetMatWidth()
-{
-	return kWidth;
-}
-
-size_t Game::GetMatHeight()
-{
-	return kHeight;
-}
-
-void Game::SetContentOnPos(const std::pair<uint16_t, uint16_t> pos, const char symbol)
+void Game::SetContentOnPos(Pos pos, char symbol)
 {
 	m_board.UpdateBoard(pos, symbol);
 	for(auto obs : m_observers)
 		if (auto sp = obs.lock())
 		{
-			sp->OnMakeMove();
+			sp->OnMakeMove(pos, m_moveNo % 2);
 		}
-}
-
-std::pair<uint16_t, uint16_t> Game::GetARandomEmptyPos() const
-{
-	srand(time(NULL));
-	uint16_t randomIndex = rand() % m_board.GetEmptyPositions().size();
-	return m_board.GetEmptyPositions()[randomIndex];
 }

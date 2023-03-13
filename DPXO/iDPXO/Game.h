@@ -4,25 +4,30 @@
 #include "Board.h"
 #include "IGameListener.h"
 
-
 class Game : public IGame
 {
 public:
-	//Methods
-	bool CheckIfAddOnPos(const std::pair<uint16_t, uint16_t> pos) const;
-	void SetContentOnPos(const std::pair<uint16_t, uint16_t> pos, char symbol);
-	std::pair<uint16_t, uint16_t> GetARandomEmptyPos() const;
-	BoardState GameState() const;
+	//Override
+	EMoveResult MakeMove(Pos position, EGameMode gameMode) override;
+	BoardContent GetBoardContent() override;
 
+private:
+	//Methods
+	bool CheckIfAddOnPos(Pos pos) const ;
+	void SetContentOnPos(Pos pos, char symbol);
+	EGameState GetGameState() const;
+
+
+	//Listeners
 	void AddListener(IGameListenerPtr observer);
 	void RemoveListener(IGameListener* observer);
 
-	Board::BoardContent GetBoard() const;
-	size_t GetMatWidth();
-	size_t GetMatHeight();
-	
+	//Getters
+	uint16_t GetMoveNo();
+
 private:
 	Board m_board;
+	uint16_t m_moveNo = 0;
 	std::vector<IGameListenerWeakPtr> m_observers;
 };
 

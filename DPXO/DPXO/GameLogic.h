@@ -12,9 +12,8 @@ public:
 	GameLogic() = default;
 
 public:
-	void ShowTable(std::ostream& os, uint16_t whoIsPlacing);
 
-	Game& GetGame();
+	void ShowTable(std::ostream& os, uint16_t whoIsPlacing);
 private:
-	Game m_game;
+	std::shared_ptr<IGame> m_game;
 };
