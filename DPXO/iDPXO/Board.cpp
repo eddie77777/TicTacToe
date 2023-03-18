@@ -22,8 +22,11 @@ void Board::UpdateBoard(Pos pos, char symbol)
 Pos Board::GetARandomEmptyPos() const
 {
 	srand(time(NULL));
-	uint16_t randomIndex = rand() % m_emptyPos.size();
-	return m_emptyPos[randomIndex];
+	uint16_t randomIndex = int(rand()) % m_emptyPos.size();
+	if (m_emptyPos.size() != 0)
+		return m_emptyPos[randomIndex];
+	else
+		return { -1, -1 };
 }
 
 EmptyPositions Board::GetEmptyPositions() const
@@ -36,12 +39,12 @@ BoardContent Board::GetMatrix() const
 	return m_matrix;
 }
 
-size_t Board::GetMatWidth()
+size_t Board::GetMatWidth() const
 {
 	return kWidth;
 }
 
-size_t Board::GetMatHeight()
+size_t Board::GetMatHeight() const
 {
 	return kHeight;
 }

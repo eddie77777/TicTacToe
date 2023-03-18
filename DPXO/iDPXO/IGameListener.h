@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include "IGame.h"
 
 class IGameListener
 {

@@ -10,13 +10,12 @@ public:
 	//Override
 	EMoveResult MakeMove(Pos position, EGameMode gameMode) override;
 	BoardContent GetBoardContent() override;
+	virtual EGameState GetState() override;
 
 private:
 	//Methods
 	bool CheckIfAddOnPos(Pos pos) const ;
 	void SetContentOnPos(Pos pos, char symbol);
-	EGameState GetGameState() const;
-
 
 	//Listeners
 	void AddListener(IGameListenerPtr observer);

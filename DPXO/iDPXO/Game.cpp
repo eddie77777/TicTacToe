@@ -2,7 +2,9 @@
 
 bool Game::CheckIfAddOnPos(Pos pos) const
 {
-	if (pos.first == -1 || pos.second == -1)
+	if (pos.first < 0 || pos.second < 0)
+		return false;
+	if (pos.first >= m_board.GetMatHeight() || pos.second >= m_board.GetMatWidth())
 		return false;
 	if (m_board.GetMatrix()[pos.first][pos.second] != ' ')
 		return false;
@@ -21,6 +23,7 @@ EMoveResult Game::MakeMove(Pos position, EGameMode gameMode)
 		if (CheckIfAddOnPos(position))
 		{
 			SetContentOnPos(position, symbol);
+			m_moveNo++;
 			return EMoveResult::Success;
 		}
 		else
@@ -30,16 +33,16 @@ EMoveResult Game::MakeMove(Pos position, EGameMode gameMode)
 	{
 		if (CheckIfAddOnPos(position))
 		{
-			SetContentOnPos(position, symbol);
+			SetContentOnPos(position, 'X');
+			SetContentOnPos(m_board.GetARandomEmptyPos(), '0');
 			return EMoveResult::Success;
+			//TODO: Sa nu mai hardcodez simbolul pentru singleplayer mode
+			//Sa am grija ca la ultima miscare, in functie GetARandomEmptyPos sa nu imi returneze
+			//o pozitie invalida
 		}
 		else
 			return EMoveResult::Fail;
-		SetContentOnPos(m_board.GetARandomEmptyPos(), symbol);
-		m_moveNo++;
-
 	}
-	m_moveNo++;
 }
 
 BoardContent Game::GetBoardContent()
@@ -47,12 +50,7 @@ BoardContent Game::GetBoardContent()
 	return m_board.GetMatrix();
 }
 
-IGamePtr IGame::Produce()
-{
-	return std::make_shared<Game>();
-}
-
-EGameState Game::GetGameState() const
+EGameState Game::GetState()
 {
 	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][1] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][2] && m_board.GetMatrix()[0][0] != ' ')
 		return EGameState::Win;
@@ -73,6 +71,11 @@ EGameState Game::GetGameState() const
 	if (m_board.GetEmptyPositions().empty())
 		return EGameState::Tie;
 	return EGameState::Playing;
+}
+
+IGamePtr IGame::Produce()
+{
+	return std::make_shared<Game>();
 }
 
 void Game::AddListener(IGameListenerPtr observer)

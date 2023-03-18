@@ -1,11 +1,10 @@
 #include "ConsoleListener.h"
 #include <iostream>
 
-ConsoleListener::ConsoleListener(int no, Game* game)
+ConsoleListener::ConsoleListener(int no, IGame* game)
 	: m_no(no)
 	, m_game(game)
 {
-
 }
 
 void ConsoleListener::OnMakeMove(Pos pos, int currentPlayer)

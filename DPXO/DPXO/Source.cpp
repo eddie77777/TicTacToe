@@ -28,6 +28,30 @@
 
 int main()
 {
+	GameLogic* game = new GameLogic();
+	bool mode;
+	EGameMode gameMode;
+	std::cout << "Choose game mode: [0] Single Player  || [1] Multi Player\n";
+	std::cin >> mode;
+	std::cout << '\n';
+	if (mode)
+	{
+		gameMode = EGameMode::Multiplayer;
+	}
+	else
+	{
+		gameMode = EGameMode::Singleplayer;
+	}
+	int whoIsPlacing = 0;
+	game->ShowTable(std::cout, whoIsPlacing);
+	while (game->GetGameState() == EGameState::Playing)
+	{
+		whoIsPlacing++;
+		game->MakeMove(gameMode);
+		game->ShowTable(std::cout, whoIsPlacing);
+	}
+	//TODO: Sa fac afisare corecta si pentru jocul cu computer
+
 	//GameLogic gamelogic;
 	//HPlayer player1;
 	//player1.SetSymbol('X');

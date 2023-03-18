@@ -9,11 +9,14 @@ private:
 	const char kSecondSymbol = '0';
 
 public:
-	GameLogic() = default;
-
+	GameLogic();
+private:
+	uint16_t ReadPos(std::string axis);
 public:
-
 	void ShowTable(std::ostream& os, uint16_t whoIsPlacing);
+	void MakeMove(EGameMode gameMode);
+	EGameState GetGameState();
+
 private:
 	std::shared_ptr<IGame> m_game;
 };

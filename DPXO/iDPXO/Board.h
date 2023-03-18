@@ -22,8 +22,8 @@ public:
 	//Getters
 	EmptyPositions GetEmptyPositions() const;
 	BoardContent GetMatrix() const;
-	size_t GetMatWidth();
-	size_t GetMatHeight();
+	size_t GetMatWidth() const;
+	size_t GetMatHeight() const;
 	
 private:
 	//Members
