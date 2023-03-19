@@ -22,11 +22,10 @@ void Board::UpdateBoard(Pos pos, char symbol)
 Pos Board::GetARandomEmptyPos() const
 {
 	srand(time(NULL));
-	uint16_t randomIndex = int(rand()) % m_emptyPos.size();
-	if (m_emptyPos.size() != 0)
-		return m_emptyPos[randomIndex];
-	else
+	if (m_emptyPos.size() == 0)
 		return { -1, -1 };
+	uint16_t randomIndex = int(rand()) % m_emptyPos.size();
+	return m_emptyPos[randomIndex];
 }
 
 EmptyPositions Board::GetEmptyPositions() const

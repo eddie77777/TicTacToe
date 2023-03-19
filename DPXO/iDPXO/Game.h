@@ -12,7 +12,7 @@ public:
 	EGameState GetState() override;
 	void GameOver() override;
 	void AddListener(IGameListenerPtr observer) override;
-	void RemoveListener(IGameListener* observer) override;
+	void RemoveListener(IGameListenerPtr observer) override;
 
 	void CallGameOver(EGameState gameState);
 	char GetSymbol();

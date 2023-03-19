@@ -48,6 +48,6 @@ int main()
 		game->MakeMove(gameMode);
 	}
 	game->GetGame()->GameOver();
+	game->GetGame()->RemoveListener(gameObserver1);
 	return 0;
-	//TODO: Sa fac afisare corecta si pentru jocul cu computer
 }
