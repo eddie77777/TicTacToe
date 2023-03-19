@@ -9,7 +9,7 @@ public:
 	//Override
 	EMoveResult MakeMove(Pos position, EGameMode gameMode) override;
 	BoardContent GetBoardContent() override;
-	virtual EGameState GetState() override;
+	EGameState GetState() override;
 	void GameOver() override;
 	void AddListener(IGameListenerPtr observer) override;
 	void RemoveListener(IGameListener* observer) override;
