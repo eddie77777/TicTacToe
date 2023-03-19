@@ -13,16 +13,11 @@ bool Game::CheckIfAddOnPos(Pos pos) const
 
 EMoveResult Game::MakeMove(Pos position, EGameMode gameMode)
 {
-	char symbol;
-	if (m_moveNo % 2 == 0)
-		symbol = 'X';
-	else
-		symbol = '0';
 	if (gameMode == EGameMode::Multiplayer)
 	{
 		if (CheckIfAddOnPos(position))
 		{
-			SetContentOnPos(position, symbol);
+			SetContentOnPos(position, GetSymbol());
 			m_moveNo++;
 			return EMoveResult::Success;
 		}
@@ -33,12 +28,11 @@ EMoveResult Game::MakeMove(Pos position, EGameMode gameMode)
 	{
 		if (CheckIfAddOnPos(position))
 		{
-			SetContentOnPos(position, 'X');
-			SetContentOnPos(m_board.GetARandomEmptyPos(), '0');
+			SetContentOnPos(position, GetSymbol());
+			if (m_board.GetARandomEmptyPos().first != -1)
+				SetContentOnPos(m_board.GetARandomEmptyPos(), GetSymbol());
+			m_moveNo += 2;
 			return EMoveResult::Success;
-			//TODO: Sa nu mai hardcodez simbolul pentru singleplayer mode
-			//Sa am grija ca la ultima miscare, in functie GetARandomEmptyPos sa nu imi returneze
-			//o pozitie invalida
 		}
 		else
 			return EMoveResult::Fail;
@@ -54,7 +48,7 @@ EGameState Game::GetState()
 {
 	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][1] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][2] && m_board.GetMatrix()[0][0] != ' ')
 		return EGameState::Win;
-	if (m_board.GetMatrix()[1][0] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[1][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[1][0] != ' ')
+	if (m_board.GetMatrix()[1][0] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[1][0] == m_board.GetMatrix()[1][2] && m_board.GetMatrix()[1][0] != ' ')
 		return EGameState::Win;
 	if (m_board.GetMatrix()[2][0] == m_board.GetMatrix()[2][1] && m_board.GetMatrix()[2][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[2][0] != ' ')
 		return EGameState::Win;
@@ -83,6 +77,18 @@ void Game::AddListener(IGameListenerPtr observer)
 	m_observers.push_back(observer);
 }
 
+void Game::GameOver()
+{
+	if (GetState() == EGameState::Win)
+	{
+		CallGameOver(EGameState::Win);
+	}
+	else if (GetState() == EGameState::Tie)
+	{
+		CallGameOver(EGameState::Tie);
+	}
+}
+
 void Game::RemoveListener(IGameListener* observer)
 {
 	for (auto it = m_observers.begin(); it != m_observers.end(); )
@@ -99,6 +105,26 @@ void Game::RemoveListener(IGameListener* observer)
 	}
 }
 
+void Game::CallGameOver(EGameState gameState)
+{
+
+	for (auto obs : m_observers)
+		if (auto sp = obs.lock())
+		{
+			sp->OnGameOver((m_moveNo - 1) % 2 + 1, gameState);
+		}
+}
+
+char Game::GetSymbol()
+{
+	char symbol;
+	if (m_moveNo % 2 == 0)
+		symbol = 'X';
+	else
+		symbol = '0';
+	return symbol;
+}
+
 uint16_t Game::GetMoveNo()
 {
 	return m_moveNo;
@@ -107,9 +133,9 @@ uint16_t Game::GetMoveNo()
 void Game::SetContentOnPos(Pos pos, char symbol)
 {
 	m_board.UpdateBoard(pos, symbol);
-	for(auto obs : m_observers)
+	for (auto obs : m_observers)
 		if (auto sp = obs.lock())
 		{
-			sp->OnMakeMove(pos, m_moveNo % 2);
+			sp->OnMakeMove(pos, m_moveNo % 2 + 1);
 		}
 }

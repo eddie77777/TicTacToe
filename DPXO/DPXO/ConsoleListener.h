@@ -1,19 +1,17 @@
 #pragma once
-#include "IGameListener.h"
 #include "IGame.h"
 
-class Game;
 
 class ConsoleListener : public IGameListener
 {
 public:
-	ConsoleListener(int no, IGame* game);
-
+	ConsoleListener(int no, IGamePtr game);
 	void OnMakeMove(Pos pos, int currentPlayer) override;
 	void OnGameOver(int currentPlayer, EGameState gameState) override;
+	void ShowTable(std::ostream& os, uint16_t currentPlayer);
 
 private:
 	int m_no;
-	IGame* m_game;
+	IGamePtr m_game;
 };
 
