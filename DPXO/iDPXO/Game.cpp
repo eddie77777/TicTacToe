@@ -29,9 +29,10 @@ EMoveResult Game::MakeMove(Pos position, EGameMode gameMode)
 		if (CheckIfAddOnPos(position))
 		{
 			SetContentOnPos(position, GetSymbol());
+			m_moveNo++;
 			if (m_board.GetARandomEmptyPos().first != -1)
 				SetContentOnPos(m_board.GetARandomEmptyPos(), GetSymbol());
-			m_moveNo += 2;
+			m_moveNo++;
 			return EMoveResult::Success;
 		}
 		else
@@ -123,11 +124,6 @@ char Game::GetSymbol()
 	else
 		symbol = '0';
 	return symbol;
-}
-
-uint16_t Game::GetMoveNo()
-{
-	return m_moveNo;
 }
 
 void Game::SetContentOnPos(Pos pos, char symbol)

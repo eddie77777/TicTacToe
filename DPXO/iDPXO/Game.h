@@ -21,10 +21,6 @@ private:
 	//Methods
 	bool CheckIfAddOnPos(Pos pos) const;
 	void SetContentOnPos(Pos pos, char symbol);
-
-	//Getters
-	uint16_t GetMoveNo();
-
 private:
 	Board m_board;
 	uint16_t m_moveNo = 0;

@@ -22,7 +22,13 @@ uint16_t GameLogic::ReadPos(std::string axis)
 		try 
 		{
 			input = std::stoi(s_input);
-			break;
+			if (input > m_game->GetBoardContent().size() || input < 1)
+			{
+				std::cout << "Input out of range\n";
+				std::cout << axis << ": ";
+			}
+			else
+				break;
 		}
 		catch (std::invalid_argument e)
 		{
@@ -30,7 +36,7 @@ uint16_t GameLogic::ReadPos(std::string axis)
 			std::cout << axis << ": ";
 		}
 	}
-	return input;
+	return input - 1;
 }
 
 void GameLogic::MakeMove(EGameMode gameMode)
