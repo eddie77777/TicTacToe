@@ -90,13 +90,13 @@ void Game::GameOver()
 	}
 }
 
-void Game::RemoveListener(IGameListener* observer)
+void Game::RemoveListener(IGameListenerPtr observer)
 {
 	for (auto it = m_observers.begin(); it != m_observers.end(); )
 	{
 		if (auto sp = it->lock())
 		{
-			if (sp.get() == observer)
+			if (sp.get() == observer.get())
 				it = m_observers.erase(it);
 			else
 				it++;
