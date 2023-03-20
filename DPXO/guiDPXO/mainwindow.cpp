@@ -56,7 +56,7 @@ void MainWindow::HandleButton()
         m_game->GameOver();
 
 }
-
+ 
 IGamePtr MainWindow::GetGame()
 {
     return m_game;
