@@ -18,7 +18,6 @@ uint16_t ConsoleGame::ReadPos(std::string axis)
 	while (true)
 	{
 		std::cin >> s_input;
-		//std::getline(std::cin, s_input);
 		try 
 		{
 			input = std::stoi(s_input);
@@ -41,6 +40,7 @@ uint16_t ConsoleGame::ReadPos(std::string axis)
 
 void ConsoleGame::MakeMove(EGameMode gameMode)
 {
+	std::cout << "*choose position*\n";
 	uint16_t line = ReadPos("line");
 	uint16_t column = ReadPos("column");
 	while (m_game->MakeMove({ line , column }, gameMode) == EMoveResult::Fail)

@@ -1,18 +1,15 @@
 #pragma once
 #include <memory>
 
-enum class EGameState {
-	Playing,
-	Win,
-	Tie
-};
+enum class EGameState;
 
 using Pos = std::pair<uint16_t, uint16_t>;
 
 class IGameListener
 {
 public:
-	
+	//Methods
+
 	/// Offers to users info about game state
 	/// \param pos the last position which the player made the move on
 	/// \param which player made the move
@@ -23,6 +20,7 @@ public:
 	/// \param gameState the state of the game ( tie,win )
 	virtual void OnGameOver(int currentPlayer, EGameState gameState) = 0;
 
+	//Destructor
 	virtual ~IGameListener() = default;
 };
 

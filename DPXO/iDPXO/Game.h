@@ -11,8 +11,8 @@ public:
 	BoardContent GetBoardContent() override;
 	EGameState GetState() override;
 	void GameOver() override;
-	void AddListener(IGameListenerPtr observer) override;
-	void RemoveListener(IGameListenerPtr observer) override;
+	void AddListener(IGameListenerWeakPtr observer) override;
+	void RemoveListener(IGameListenerWeakPtr observer) override;
 
 	void CallGameOver(EGameState gameState);
 	char GetSymbol();

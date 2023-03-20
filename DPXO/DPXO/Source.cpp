@@ -5,15 +5,11 @@
 #include <stdlib.h>
 #include <string>
 
-
-
-int main()
+int ChooseGameMode()
 {
-	ConsoleGame* consoleGame = new ConsoleGame();
-	EGameMode gameMode;
 	std::string s_mode;
 	int mode;
-	while (true) 
+	while (true)
 	{
 		std::cout << "Choose game mode: [0] Single Player  || [1] Multi Player\n";
 		std::cin >> s_mode;
@@ -29,16 +25,24 @@ int main()
 			std::cout << "Invalid game mode!\n";
 		}
 	}
+	return mode;
+}
+
+int main()
+{
+	ConsoleGame* consoleGame = new ConsoleGame();
+	EGameMode gameMode;
+	int mode = ChooseGameMode();
 	system("CLS");
 	if (mode)
 	{
-		std::cout << "You chose SiNGLE PLAYER MODE.\n";
+		std::cout << "You chose MULTi PLAYER MODE. Have fun!\n\n";
 		gameMode = EGameMode::Multiplayer;
 	}
 	else
 	{
 		gameMode = EGameMode::Singleplayer;
-		std::cout << "You chose MULTi PLAYER MODE.\n";
+		std::cout << "You chose SiNGLE PLAYER MODE. Have fun!\n\n";
 	}
 	auto gameObserver1 = std::make_shared<ConsoleListener>(1, consoleGame->GetGame());
 	consoleGame->GetGame()->AddListener(gameObserver1);
