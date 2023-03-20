@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <iostream>
 
 bool Game::CheckIfAddOnPos(Pos pos) const
 {
@@ -75,7 +76,7 @@ IGamePtr IGame::Produce()
 	return std::make_shared<Game>();
 }
 
-void Game::AddListener(IGameListenerPtr observer)
+void Game::AddListener(IGameListenerWeakPtr observer)
 {
 	m_observers.push_back(observer);
 }
@@ -92,19 +93,21 @@ void Game::GameOver()
 	}
 }
 
-void Game::RemoveListener(IGameListenerPtr observer)
+void Game::RemoveListener(IGameListenerWeakPtr observer)
 {
 	for (auto it = m_observers.begin(); it != m_observers.end(); )
 	{
 		if (auto sp = it->lock())
 		{
-			if (sp.get() == observer.get())
+			if (sp == observer.lock())
 				it = m_observers.erase(it);
 			else
 				it++;
 		}
 		else
+		{
 			it = m_observers.erase(it);
+		}
 	}
 }
 

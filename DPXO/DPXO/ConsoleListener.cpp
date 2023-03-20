@@ -10,16 +10,14 @@ ConsoleListener::ConsoleListener(int no, IGamePtr game)
 void ConsoleListener::OnMakeMove(Pos pos, int currentPlayer)
 {
 	system("CLS");
-	//std::cout << "GameObserver" << m_no << "::OnMakeMove: //";
 	std::cout << "Last move: ";
 	std::cout << "Player: " << currentPlayer << "// Pos: " 
-	<< '[' << pos.first + 1 << " , " << pos.second + 1 << ']' << '\n';
+	<< '[' << pos.first + 1 << " , " << pos.second + 1 << ']' << "\n\n";
 	ShowTable(std::cout, 3 - currentPlayer);
 }
 
 void ConsoleListener::OnGameOver(int currentPlayer, EGameState gameState)
 {
-	//std::cout << "GameObserver" << m_no << "::OnGameOver: ";
 	std::cout << "GAME OVER!!! ";
 	if (gameState == EGameState::Win)
 		std::cout << "Player: " << currentPlayer << " won the game!\n";
