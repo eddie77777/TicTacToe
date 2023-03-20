@@ -1,0 +1,43 @@
+\hypertarget{class_i_game_listener}{}\doxysection{IGame\+Listener Class Reference}
+\label{class_i_game_listener}\index{IGameListener@{IGameListener}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_i_game_listener_a2d29f3a45a56954b9d00c3651495c9b1}{On\+Make\+Move}} (Pos pos, int current\+Player)=0
+\item 
+virtual void \mbox{\hyperlink{class_i_game_listener_ac252b30091ed564bd41de12260dc6c71}{On\+Game\+Over}} (int current\+Player, EGame\+State game\+State)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_i_game_listener_ac252b30091ed564bd41de12260dc6c71}\label{class_i_game_listener_ac252b30091ed564bd41de12260dc6c71}} 
+\index{IGameListener@{IGameListener}!OnGameOver@{OnGameOver}}
+\index{OnGameOver@{OnGameOver}!IGameListener@{IGameListener}}
+\doxysubsubsection{\texorpdfstring{OnGameOver()}{OnGameOver()}}
+{\footnotesize\ttfamily virtual void IGame\+Listener\+::\+On\+Game\+Over (\begin{DoxyParamCaption}\item[{int}]{current\+Player,  }\item[{EGame\+State}]{game\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Offers to users info about how the game ended 
+\begin{DoxyParams}{Parameters}
+{\em which} & player made the move \\
+\hline
+{\em game\+State} & the state of the game ( tie,win ) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_i_game_listener_a2d29f3a45a56954b9d00c3651495c9b1}\label{class_i_game_listener_a2d29f3a45a56954b9d00c3651495c9b1}} 
+\index{IGameListener@{IGameListener}!OnMakeMove@{OnMakeMove}}
+\index{OnMakeMove@{OnMakeMove}!IGameListener@{IGameListener}}
+\doxysubsubsection{\texorpdfstring{OnMakeMove()}{OnMakeMove()}}
+{\footnotesize\ttfamily virtual void IGame\+Listener\+::\+On\+Make\+Move (\begin{DoxyParamCaption}\item[{Pos}]{pos,  }\item[{int}]{current\+Player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Offers to users info about game state 
+\begin{DoxyParams}{Parameters}
+{\em pos} & the last position which the player made the move on \\
+\hline
+{\em which} & player made the move \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+i\+DPXO/IGame\+Listener.\+h\end{DoxyCompactItemize}

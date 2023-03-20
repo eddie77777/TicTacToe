@@ -1,0 +1,168 @@
+\hypertarget{class_game}{}\doxysection{Game Class Reference}
+\label{class_game}\index{Game@{Game}}
+Inheritance diagram for Game\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_game}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+EMove\+Result \mbox{\hyperlink{class_game_add933851a4c1151fab0ff391aaaf1977}{Make\+Move}} (Pos position, EGame\+Mode game\+Mode) override
+\begin{DoxyCompactList}\small\item\em For each type of game checks if the player can add a symbol on a position and if it\textquotesingle{}s affirmative it adds it and returns the result. \end{DoxyCompactList}\item 
+Board\+Content \mbox{\hyperlink{class_game_a7399f77edf07853172a259f37fbaff04}{Get\+Board\+Content}} () override
+\begin{DoxyCompactList}\small\item\em Gets the matrix of the board. \end{DoxyCompactList}\item 
+EGame\+State \mbox{\hyperlink{class_game_aaae534349f766f9366f024a5ad946f48}{Get\+State}} () override
+\begin{DoxyCompactList}\small\item\em Gets the state of the game ( playing, win, tie ) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_ad30c0d5396823f69ae92e72d98102d49}{Game\+Over}} () override
+\begin{DoxyCompactList}\small\item\em Tells the observer how the game ended. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_a12e6f9d876e8d13f71bf12be06a59efe}{Add\+Listener}} (IGame\+Listener\+Weak\+Ptr observer) override
+\begin{DoxyCompactList}\small\item\em Adds a new listener to the observer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_ae24ba48521d00ef9e842a27f5f0a903c}{Remove\+Listener}} (IGame\+Listener\+Weak\+Ptr observer) override
+\begin{DoxyCompactList}\small\item\em Removes a listener from the observer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_ae11c741f9a8fedb1bd973d3ae1d12e4c}\label{class_game_ae11c741f9a8fedb1bd973d3ae1d12e4c}} 
+void {\bfseries Call\+Game\+Over} (EGame\+State game\+State)
+\item 
+\mbox{\Hypertarget{class_game_aa6ac74f6f3ddea878e72234df92bda70}\label{class_game_aa6ac74f6f3ddea878e72234df92bda70}} 
+char {\bfseries Get\+Symbol} ()
+\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+virtual EMove\+Result \mbox{\hyperlink{class_i_game_aa7250bc97d16116ba13e178c9e108b8e}{Make\+Move}} (Pos position, EGame\+Mode game\+Mode)=0
+\begin{DoxyCompactList}\small\item\em For each type of game checks if the player can add a symbol on a position and if it\textquotesingle{}s affirmative it adds it and returns the result. \end{DoxyCompactList}\item 
+virtual Board\+Content \mbox{\hyperlink{class_i_game_a3383474fd60d73b1a2bc5ec16742e578}{Get\+Board\+Content}} ()=0
+\begin{DoxyCompactList}\small\item\em Gets the matrix of the board. \end{DoxyCompactList}\item 
+virtual EGame\+State \mbox{\hyperlink{class_i_game_a84ad15ed781218d21193293b559b4ca3}{Get\+State}} ()=0
+\begin{DoxyCompactList}\small\item\em Gets the state of the game ( playing, win, tie ) \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_i_game_aeec9ae1c65c76e6032640f5329edc9ff}{Game\+Over}} ()=0
+\begin{DoxyCompactList}\small\item\em Tells the observer how the game ended. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_i_game_a75e72faa7a0a79d3328edaa7dbb87e51}{Add\+Listener}} (IGame\+Listener\+Weak\+Ptr observer)=0
+\begin{DoxyCompactList}\small\item\em Adds a new listener to the observer. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_i_game_a11bfecacdf97fee608c322cac2adc9a2}{Remove\+Listener}} (IGame\+Listener\+Weak\+Ptr observer)=0
+\begin{DoxyCompactList}\small\item\em Removes a listener from the observer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+\doxysubsubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_i_game}{IGame}}}
+\begin{DoxyCompactItemize}
+\item 
+static IGame\+Ptr \mbox{\hyperlink{class_i_game_a5fd1fc99eae40264db9f2cdfe986bd0c}{Produce}} ()
+\begin{DoxyCompactList}\small\item\em Constructs an object of type \mbox{\hyperlink{class_game}{Game}} and wraps it in a std\+::shared\+\_\+ptr to \mbox{\hyperlink{class_i_game}{IGame}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_a12e6f9d876e8d13f71bf12be06a59efe}\label{class_game_a12e6f9d876e8d13f71bf12be06a59efe}} 
+\index{Game@{Game}!AddListener@{AddListener}}
+\index{AddListener@{AddListener}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{AddListener()}{AddListener()}}
+{\footnotesize\ttfamily void Game\+::\+Add\+Listener (\begin{DoxyParamCaption}\item[{IGame\+Listener\+Weak\+Ptr}]{observer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Adds a new listener to the observer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em observer} & a weak\+\_\+ptr to \mbox{\hyperlink{class_i_game_listener}{IGame\+Listener}} \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_i_game_a75e72faa7a0a79d3328edaa7dbb87e51}{IGame}}.
+
+\mbox{\Hypertarget{class_game_ad30c0d5396823f69ae92e72d98102d49}\label{class_game_ad30c0d5396823f69ae92e72d98102d49}} 
+\index{Game@{Game}!GameOver@{GameOver}}
+\index{GameOver@{GameOver}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GameOver()}{GameOver()}}
+{\footnotesize\ttfamily void Game\+::\+Game\+Over (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Tells the observer how the game ended. 
+
+
+
+Implements \mbox{\hyperlink{class_i_game_aeec9ae1c65c76e6032640f5329edc9ff}{IGame}}.
+
+\mbox{\Hypertarget{class_game_a7399f77edf07853172a259f37fbaff04}\label{class_game_a7399f77edf07853172a259f37fbaff04}} 
+\index{Game@{Game}!GetBoardContent@{GetBoardContent}}
+\index{GetBoardContent@{GetBoardContent}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetBoardContent()}{GetBoardContent()}}
+{\footnotesize\ttfamily Board\+Content Game\+::\+Get\+Board\+Content (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the matrix of the board. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of the board 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_i_game_a3383474fd60d73b1a2bc5ec16742e578}{IGame}}.
+
+\mbox{\Hypertarget{class_game_aaae534349f766f9366f024a5ad946f48}\label{class_game_aaae534349f766f9366f024a5ad946f48}} 
+\index{Game@{Game}!GetState@{GetState}}
+\index{GetState@{GetState}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{GetState()}{GetState()}}
+{\footnotesize\ttfamily EGame\+State Game\+::\+Get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Gets the state of the game ( playing, win, tie ) 
+
+\begin{DoxyReturn}{Returns}
+The state of the game ( playing, win, tie ) 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_i_game_a84ad15ed781218d21193293b559b4ca3}{IGame}}.
+
+\mbox{\Hypertarget{class_game_add933851a4c1151fab0ff391aaaf1977}\label{class_game_add933851a4c1151fab0ff391aaaf1977}} 
+\index{Game@{Game}!MakeMove@{MakeMove}}
+\index{MakeMove@{MakeMove}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{MakeMove()}{MakeMove()}}
+{\footnotesize\ttfamily EMove\+Result Game\+::\+Make\+Move (\begin{DoxyParamCaption}\item[{Pos}]{position,  }\item[{EGame\+Mode}]{game\+Mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+For each type of game checks if the player can add a symbol on a position and if it\textquotesingle{}s affirmative it adds it and returns the result. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & a position where the move must be made \\
+\hline
+{\em game\+Mode} & the type of game being played \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Movement result that is fail or success 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_i_game_aa7250bc97d16116ba13e178c9e108b8e}{IGame}}.
+
+\mbox{\Hypertarget{class_game_ae24ba48521d00ef9e842a27f5f0a903c}\label{class_game_ae24ba48521d00ef9e842a27f5f0a903c}} 
+\index{Game@{Game}!RemoveListener@{RemoveListener}}
+\index{RemoveListener@{RemoveListener}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{RemoveListener()}{RemoveListener()}}
+{\footnotesize\ttfamily void Game\+::\+Remove\+Listener (\begin{DoxyParamCaption}\item[{IGame\+Listener\+Weak\+Ptr}]{observer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Removes a listener from the observer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em observer} & a weak\+\_\+ptr to \mbox{\hyperlink{class_i_game_listener}{IGame\+Listener}} \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_i_game_a11bfecacdf97fee608c322cac2adc9a2}{IGame}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+i\+DPXO/Game.\+h\item 
+i\+DPXO/Game.\+cpp\end{DoxyCompactItemize}
