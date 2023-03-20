@@ -6,7 +6,7 @@ UIListener::UIListener(int no, IGamePtr game) : m_no(no)
 {
 }
 
-void UIListener::OnMakeMove(Pos pos, int currentPlayer)
+void UIListener::OnMakeMove(Pos pos, int currentPlayer, IGame* game)
 {
     QString message = "Player " + QString::number(currentPlayer) + " made a move at position (" +
         QString::number(pos.first) + "," + QString::number(pos.second) + ")";

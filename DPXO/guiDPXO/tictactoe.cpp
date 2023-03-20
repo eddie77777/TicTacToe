@@ -39,8 +39,9 @@ void TicTacToe::startGameWithPlayer()
 {
     EGameMode gameMode = EGameMode::Multiplayer;
     MainWindow* game = new MainWindow(gameMode);
-    game->show();
     auto uiListener = std::make_shared<UIListener>(1, game->GetGame());
+    game->show();
     game->GetGame()->AddListener(uiListener);
+    game->SetListener(uiListener);
     hide();
 }

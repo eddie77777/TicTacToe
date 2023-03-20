@@ -13,7 +13,7 @@ public:
 	/// \brief Offers to users info about game state
 	/// \param pos the last position which the player made the move on
 	/// \param which player made the move
-	virtual void OnMakeMove(Pos pos, int currentPlayer) = 0;
+	virtual void OnMakeMove(Pos pos, int currentPlayer, IGame* game) = 0;
 
 	/// \brief Offers to users info about how the game ended 
 	/// \param which player made the move

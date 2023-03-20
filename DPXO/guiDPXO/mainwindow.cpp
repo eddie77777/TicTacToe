@@ -61,3 +61,8 @@ IGamePtr MainWindow::GetGame()
 {
     return m_game;
 }
+
+void MainWindow::SetListener(std::shared_ptr<IGameListener> listener)
+{
+    m_listener = listener;
+}

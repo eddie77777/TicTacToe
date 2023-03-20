@@ -15,8 +15,11 @@ public:
     void HandleButton();
     ~MainWindow();
     IGamePtr GetGame();
+
+    void SetListener(std::shared_ptr<IGameListener> listener);
 private:
     QPushButton* buttons[3][3];
+    std::shared_ptr<IGameListener> m_listener;
     IGamePtr m_game;
     EGameMode m_gameMode;
 };
