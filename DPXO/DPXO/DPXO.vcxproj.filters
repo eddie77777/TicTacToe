@@ -21,10 +21,10 @@
     <ClCompile Include="HPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameLogic.cpp">
+    <ClCompile Include="ConsoleListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleListener.cpp">
+    <ClCompile Include="ConsoleGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <ClInclude Include="HPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameLogic.h">
+    <ClInclude Include="ConsoleListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleListener.h">
+    <ClInclude Include="ConsoleGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

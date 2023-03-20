@@ -143,14 +143,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ConsoleGame.cpp" />
     <ClCompile Include="ConsoleListener.cpp" />
-    <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="HPlayer.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConsoleGame.h" />
     <ClInclude Include="ConsoleListener.h" />
-    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="HPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

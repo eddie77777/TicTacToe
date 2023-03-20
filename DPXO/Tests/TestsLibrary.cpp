@@ -118,6 +118,14 @@ TEST(GameStateTie, Game)
     EXPECT_EQ(game.GetState(), EGameState::Tie);
 }
 
+TEST(AddObserverAndDeleteObserver, Game)
+{
+    IGameListenerPtr observer;
+    Game game;
+    game.AddListener(observer);
+    game.RemoveListener(observer);
+}
+
 int main(int argc, char** argv)
 {
    ::testing::InitGoogleTest(&argc, argv);
