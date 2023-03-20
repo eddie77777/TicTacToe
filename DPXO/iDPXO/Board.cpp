@@ -23,7 +23,7 @@ Pos Board::GetARandomEmptyPos() const
 {
 	srand(time(NULL));
 	if (m_emptyPos.size() == 0)
-		return { -1, -1 };
+		return { -2, -2 };
 	uint16_t randomIndex = int(rand()) % m_emptyPos.size();
 	return m_emptyPos[randomIndex];
 }

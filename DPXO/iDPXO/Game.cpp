@@ -30,12 +30,11 @@ EMoveResult Game::MakeMove(Pos position, EGameMode gameMode)
 		{
 			SetContentOnPos(position, GetSymbol());
 			m_moveNo++;
-			if(GetState() == EGameState::Playing)
-				if (m_board.GetARandomEmptyPos().first != -1)
-				{
-					SetContentOnPos(m_board.GetARandomEmptyPos(), GetSymbol());
-					m_moveNo++;
-				}
+			if (GetState() == EGameState::Playing)
+			{
+				SetContentOnPos(m_board.GetARandomEmptyPos(), GetSymbol());
+				m_moveNo++;
+			}
 			return EMoveResult::Success;
 		}
 		else

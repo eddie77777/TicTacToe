@@ -9,7 +9,7 @@
 
 int main()
 {
-	GameLogic* game = new GameLogic();
+	GameLogic* consoleGame = new GameLogic();
 	EGameMode gameMode;
 	std::string s_mode;
 	int mode;
@@ -40,14 +40,14 @@ int main()
 		gameMode = EGameMode::Singleplayer;
 		std::cout << "You chose MULTi PLAYER MODE.\n";
 	}
-	auto gameObserver1 = std::make_shared<ConsoleListener>(1, game->GetGame());
-	game->GetGame()->AddListener(gameObserver1);
+	auto gameObserver1 = std::make_shared<ConsoleListener>(1, consoleGame->GetGame());
+	consoleGame->GetGame()->AddListener(gameObserver1);
 	gameObserver1->ShowTable(std::cout, 1);
-	while (game->GetGame()->GetState() == EGameState::Playing)
+	while (consoleGame->GetGame()->GetState() == EGameState::Playing)
 	{
-		game->MakeMove(gameMode);
+		consoleGame->MakeMove(gameMode);
 	}
-	game->GetGame()->GameOver();
-	game->GetGame()->RemoveListener(gameObserver1);
+	consoleGame->GetGame()->GameOver();
+	consoleGame->GetGame()->RemoveListener(gameObserver1);
 	return 0;
 }
