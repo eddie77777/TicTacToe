@@ -120,7 +120,7 @@ TEST(GameStateTie, Game)
 
 TEST(AddObserverAndDeleteObserver, Game)
 {
-    IGameListenerPtr observer;
+    IGameListenerWeakPtr observer;
     Game game;
     game.AddListener(observer);
     game.RemoveListener(observer);
