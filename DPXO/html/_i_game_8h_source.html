@@ -84,49 +84,55 @@ $(function() {
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;IGameListener.h&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">//Enums</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">enum class</span> EMoveResult {</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    Fail,</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    Success</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>};</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">enum class</span> EGameMode {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    Singleplayer,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    Multiplayer</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>};</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">//Typdefs</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">using </span>BoardContent = std::array&lt;std::array&lt;char, 3&gt;, 3&gt;;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">using </span>EmptyPositions = std::vector&lt;std::pair&lt;uint16_t, uint16_t&gt;&gt;;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">using </span>IGamePtr = std::shared_ptr&lt;class IGame&gt;;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_i_game.html">   24</a></span><span class="keyword">class </span><a class="code hl_class" href="class_i_game.html">IGame</a></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">//Static Methods</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">static</span> IGamePtr <a class="code hl_function" href="class_i_game.html#a5fd1fc99eae40264db9f2cdfe986bd0c">Produce</a>();</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">//Methods</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="class_i_game.html#aa7250bc97d16116ba13e178c9e108b8e">   38</a></span>    <span class="keyword">virtual</span> EMoveResult <a class="code hl_function" href="class_i_game.html#aa7250bc97d16116ba13e178c9e108b8e">MakeMove</a>(Pos position, EGameMode gameMode) = 0;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">enum class</span> EGameState {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    Playing,</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    Win,</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    Tie</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>};</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">enum class</span> EMoveResult {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    Fail,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    Success</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>};</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">enum class</span> EGameMode {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    Singleplayer,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    Multiplayer</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>};</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">//Typdefs</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">using </span>BoardContent = std::array&lt;std::array&lt;char, 3&gt;, 3&gt;;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">using </span>EmptyPositions = std::vector&lt;std::pair&lt;uint16_t, uint16_t&gt;&gt;;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">using </span>IGamePtr = std::shared_ptr&lt;class IGame&gt;;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_i_game.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="class_i_game.html">IGame</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">//Static Methods</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">static</span> IGamePtr <a class="code hl_function" href="class_i_game.html#a5fd1fc99eae40264db9f2cdfe986bd0c">Produce</a>();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">//Methods</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="class_i_game.html#a3383474fd60d73b1a2bc5ec16742e578">   42</a></span>    <span class="keyword">virtual</span> BoardContent <a class="code hl_function" href="class_i_game.html#a3383474fd60d73b1a2bc5ec16742e578">GetBoardContent</a>() = 0;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="class_i_game.html#a84ad15ed781218d21193293b559b4ca3">   46</a></span>    <span class="keyword">virtual</span> EGameState <a class="code hl_function" href="class_i_game.html#a84ad15ed781218d21193293b559b4ca3">GetState</a>() = 0;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="class_i_game.html#aeec9ae1c65c76e6032640f5329edc9ff">   49</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_game.html#aeec9ae1c65c76e6032640f5329edc9ff">GameOver</a>() = 0;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">//Listeners</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="class_i_game.html#a75e72faa7a0a79d3328edaa7dbb87e51">   57</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_game.html#a75e72faa7a0a79d3328edaa7dbb87e51">AddListener</a>(IGameListenerWeakPtr observer) = 0;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="class_i_game.html#aa7250bc97d16116ba13e178c9e108b8e">   44</a></span>    <span class="keyword">virtual</span> EMoveResult <a class="code hl_function" href="class_i_game.html#aa7250bc97d16116ba13e178c9e108b8e">MakeMove</a>(Pos position, EGameMode gameMode) = 0;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_i_game.html#a3383474fd60d73b1a2bc5ec16742e578">   48</a></span>    <span class="keyword">virtual</span> BoardContent <a class="code hl_function" href="class_i_game.html#a3383474fd60d73b1a2bc5ec16742e578">GetBoardContent</a>() = 0;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="class_i_game.html#a84ad15ed781218d21193293b559b4ca3">   52</a></span>    <span class="keyword">virtual</span> EGameState <a class="code hl_function" href="class_i_game.html#a84ad15ed781218d21193293b559b4ca3">GetState</a>() = 0;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="class_i_game.html#aeec9ae1c65c76e6032640f5329edc9ff">   55</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_game.html#aeec9ae1c65c76e6032640f5329edc9ff">GameOver</a>() = 0;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="class_i_game.html#a11bfecacdf97fee608c322cac2adc9a2">   61</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_game.html#a11bfecacdf97fee608c322cac2adc9a2">RemoveListener</a>(IGameListenerWeakPtr observer) = 0;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">//Destructor</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="class_i_game.html">~IGame</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>};</div>
-<div class="ttc" id="aclass_i_game_html"><div class="ttname"><a href="class_i_game.html">IGame</a></div><div class="ttdef"><b>Definition:</b> IGame.h:25</div></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">//Listeners</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="class_i_game.html#a75e72faa7a0a79d3328edaa7dbb87e51">   63</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_game.html#a75e72faa7a0a79d3328edaa7dbb87e51">AddListener</a>(IGameListenerWeakPtr observer) = 0;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="class_i_game.html#a11bfecacdf97fee608c322cac2adc9a2">   67</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_i_game.html#a11bfecacdf97fee608c322cac2adc9a2">RemoveListener</a>(IGameListenerWeakPtr observer) = 0;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="comment">//Destructor</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="class_i_game.html">~IGame</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>};</div>
+<div class="ttc" id="aclass_i_game_html"><div class="ttname"><a href="class_i_game.html">IGame</a></div><div class="ttdef"><b>Definition:</b> IGame.h:31</div></div>
 <div class="ttc" id="aclass_i_game_html_a11bfecacdf97fee608c322cac2adc9a2"><div class="ttname"><a href="class_i_game.html#a11bfecacdf97fee608c322cac2adc9a2">IGame::RemoveListener</a></div><div class="ttdeci">virtual void RemoveListener(IGameListenerWeakPtr observer)=0</div><div class="ttdoc">Removes a listener from the observer.</div></div>
 <div class="ttc" id="aclass_i_game_html_a3383474fd60d73b1a2bc5ec16742e578"><div class="ttname"><a href="class_i_game.html#a3383474fd60d73b1a2bc5ec16742e578">IGame::GetBoardContent</a></div><div class="ttdeci">virtual BoardContent GetBoardContent()=0</div><div class="ttdoc">Gets the matrix of the board.</div></div>
 <div class="ttc" id="aclass_i_game_html_a5fd1fc99eae40264db9f2cdfe986bd0c"><div class="ttname"><a href="class_i_game.html#a5fd1fc99eae40264db9f2cdfe986bd0c">IGame::Produce</a></div><div class="ttdeci">static IGamePtr Produce()</div><div class="ttdoc">Constructs an object of type Game and wraps it in a std::shared_ptr to IGame.</div><div class="ttdef"><b>Definition:</b> Game.cpp:74</div></div>

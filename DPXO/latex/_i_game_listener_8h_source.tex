@@ -5,28 +5,23 @@
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <memory>}}
 \DoxyCodeLine{00003\ }
-\DoxyCodeLine{00004\ \textcolor{keyword}{enum\ class}\ EGameState\ \{}
-\DoxyCodeLine{00005\ \ \ \ \ Playing,}
-\DoxyCodeLine{00006\ \ \ \ \ Win,}
-\DoxyCodeLine{00007\ \ \ \ \ Tie}
-\DoxyCodeLine{00008\ \};}
-\DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \textcolor{keyword}{using\ }Pos\ =\ std::pair<uint16\_t,\ uint16\_t>;}
-\DoxyCodeLine{00011\ }
-\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_i_game_listener}{IGameListener}}}
-\DoxyCodeLine{00013\ \{}
-\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//Methods}}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_game_listener_a2d29f3a45a56954b9d00c3651495c9b1}{OnMakeMove}}(Pos\ pos,\ \textcolor{keywordtype}{int}\ currentPlayer)\ =\ 0;}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_game_listener_ac252b30091ed564bd41de12260dc6c71}{OnGameOver}}(\textcolor{keywordtype}{int}\ currentPlayer,\ EGameState\ gameState)\ =\ 0;}
+\DoxyCodeLine{00004\ \textcolor{keyword}{enum\ class}\ EGameState;}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ }Pos\ =\ std::pair<uint16\_t,\ uint16\_t>;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_i_game_listener}{IGameListener}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//Methods}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_game_listener_a2d29f3a45a56954b9d00c3651495c9b1}{OnMakeMove}}(Pos\ pos,\ \textcolor{keywordtype}{int}\ currentPlayer)\ =\ 0;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_i_game_listener_ac252b30091ed564bd41de12260dc6c71}{OnGameOver}}(\textcolor{keywordtype}{int}\ currentPlayer,\ EGameState\ gameState)\ =\ 0;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//Destructor}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_i_game_listener}{\string~IGameListener}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00025\ \};}
 \DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//Destructor}}
-\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_i_game_listener}{\string~IGameListener}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00029\ \};}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{keyword}{using\ }IGameListenerPtr\ =\ std::shared\_ptr<IGameListener>;}
-\DoxyCodeLine{00032\ \textcolor{keyword}{using\ }IGameListenerWeakPtr\ =\ std::weak\_ptr<IGameListener>;}
+\DoxyCodeLine{00027\ \textcolor{keyword}{using\ }IGameListenerWeakPtr\ =\ std::weak\_ptr<IGameListener>;}
 
 \end{DoxyCode}
