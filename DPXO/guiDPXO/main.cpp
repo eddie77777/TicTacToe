@@ -1,11 +1,10 @@
-#include "guiDPXO.h"
-#include <QtWidgets/QApplication>
+#include"tictactoe.h"
+#include <QApplication>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-    QApplication a(argc, argv);
-    QString st = "Tibi";
-    guiDPXO w;
-    w.show();
-    return a.exec();
+    QApplication app(argc, argv);
+    TicTacToe game;
+    game.show();
+    return app.exec();
 }
