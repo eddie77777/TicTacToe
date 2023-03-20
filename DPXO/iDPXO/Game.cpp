@@ -5,7 +5,7 @@ bool Game::CheckIfAddOnPos(Pos pos) const
 {
 	if (pos.first < 0 || pos.second < 0)
 		return false;
-	if (pos.first >= m_board.GetMatHeight() || pos.second >= m_board.GetMatWidth())
+	if (pos.first >= m_board.GetMatrix().size() || pos.second >= m_board.GetMatrix().size())
 		return false;
 	if (m_board.GetMatrix()[pos.first][pos.second] != ' ')
 		return false;

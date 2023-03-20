@@ -13,6 +13,7 @@ using Pos = std::pair<uint16_t, uint16_t>;
 class Board
 {
 public:
+	//Constructor
 	Board();
 
 	//Methods
@@ -22,8 +23,6 @@ public:
 	//Getters
 	EmptyPositions GetEmptyPositions() const;
 	BoardContent GetMatrix() const;
-	size_t GetMatWidth() const;
-	size_t GetMatHeight() const;
 	
 private:
 	//Members

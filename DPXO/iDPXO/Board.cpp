@@ -37,13 +37,3 @@ BoardContent Board::GetMatrix() const
 {
 	return m_matrix;
 }
-
-size_t Board::GetMatWidth() const
-{
-	return kWidth;
-}
-
-size_t Board::GetMatHeight() const
-{
-	return kHeight;
-}

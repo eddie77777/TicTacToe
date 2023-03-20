@@ -49,7 +49,7 @@ void ConsoleGame::MakeMove(EGameMode gameMode)
 		line = ReadPos("line");
 		column = ReadPos("column");
 	}
-	m_game->MakeMove({ line, column }, gameMode);
+	static_cast<void>(m_game->MakeMove({ line, column }, gameMode));
 }
 
 IGamePtr ConsoleGame::GetGame()
