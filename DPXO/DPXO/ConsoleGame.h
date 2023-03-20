@@ -2,10 +2,10 @@
 #include "Game.h"
 #include <iostream>
 
-class GameLogic
+class ConsoleGame
 {
 public:
-	GameLogic();
+	ConsoleGame();
 
 	void MakeMove(EGameMode gameMode);
 	IGamePtr GetGame();

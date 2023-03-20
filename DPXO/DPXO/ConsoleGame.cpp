@@ -1,15 +1,15 @@
-#include "GameLogic.h"
+#include "ConsoleGame.h"
 #include "CPlayer.h"
 #include "HPlayer.h"
 #include <string>
 
-GameLogic::GameLogic()
+ConsoleGame::ConsoleGame()
 {
 	std::cout << "Let's start the game!\n";
 	m_game = IGame::Produce();
 }
 
-uint16_t GameLogic::ReadPos(std::string axis)
+uint16_t ConsoleGame::ReadPos(std::string axis)
 {
 	uint16_t input;
 	std::string s_input;
@@ -39,7 +39,7 @@ uint16_t GameLogic::ReadPos(std::string axis)
 	return input - 1;
 }
 
-void GameLogic::MakeMove(EGameMode gameMode)
+void ConsoleGame::MakeMove(EGameMode gameMode)
 {
 	uint16_t line = ReadPos("line");
 	uint16_t column = ReadPos("column");
@@ -52,7 +52,7 @@ void GameLogic::MakeMove(EGameMode gameMode)
 	m_game->MakeMove({ line, column }, gameMode);
 }
 
-IGamePtr GameLogic::GetGame()
+IGamePtr ConsoleGame::GetGame()
 {
 	return m_game;
 }

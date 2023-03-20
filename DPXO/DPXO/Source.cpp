@@ -1,6 +1,6 @@
 #include <iostream>
 #include "HPlayer.h"
-#include "GameLogic.h"
+#include "ConsoleGame.h"
 #include "ConsoleListener.h"
 #include <stdlib.h>
 #include <string>
@@ -9,7 +9,7 @@
 
 int main()
 {
-	GameLogic* consoleGame = new GameLogic();
+	ConsoleGame* consoleGame = new ConsoleGame();
 	EGameMode gameMode;
 	std::string s_mode;
 	int mode;
