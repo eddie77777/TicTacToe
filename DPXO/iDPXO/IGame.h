@@ -41,7 +41,7 @@ public:
 	/// \param position a position where the move must be made
 	/// \param gameMode the type of game being played
 	/// \returns Movement result that is fail or success
-	virtual EMoveResult MakeMove(Pos position, EGameMode gameMode) = 0;
+	virtual EMoveResult MakeMove(Position position, EGameMode gameMode) = 0;
 
 	/// \brief Gets the matrix of the board
 	/// \returns The matrix of the board

@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <iostream>
 
-bool Game::CheckIfAddOnPos(Pos pos) const
+bool Game::CheckIfAddOnPos(Position pos) const
 {
 	if (pos.first < 0 || pos.second < 0)
 		return false;
@@ -12,7 +12,7 @@ bool Game::CheckIfAddOnPos(Pos pos) const
 	return true;
 }
 
-EMoveResult Game::MakeMove(Pos position, EGameMode gameMode)
+EMoveResult Game::MakeMove(Position position, EGameMode gameMode)
 {
 	if (gameMode == EGameMode::Multiplayer)
 	{
@@ -33,7 +33,7 @@ EMoveResult Game::MakeMove(Pos position, EGameMode gameMode)
 			m_moveNo++;
 			if (GetState() == EGameState::Playing)
 			{
-				SetContentOnPos(m_board.GetARandomEmptyPos(), GetSymbol());
+				SetContentOnPos(m_board.GetARandomEmptyPos(), GetSymbol()); //SetContentOnPos(diff->getPos(m_board), GetSymbol());
 				m_moveNo++;
 			}
 			return EMoveResult::Success;
@@ -131,7 +131,7 @@ char Game::GetSymbol()
 	return symbol;
 }
 
-void Game::SetContentOnPos(Pos pos, char symbol)
+void Game::SetContentOnPos(Position pos, char symbol)
 {
 	m_board.UpdateBoard(pos, symbol);
 	for (auto obs : m_observers)

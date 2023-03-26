@@ -7,7 +7,7 @@ class Game : public IGame
 {
 public:
 	//Override
-	EMoveResult MakeMove(Pos position, EGameMode gameMode) override;
+	EMoveResult MakeMove(Position position, EGameMode gameMode) override;
 	BoardContent GetBoardContent() override;
 	EGameState GetState() override;
 	void GameOver() override;
@@ -19,8 +19,8 @@ public:
 
 private:
 	//Methods
-	bool CheckIfAddOnPos(Pos pos) const;
-	void SetContentOnPos(Pos pos, char symbol);
+	bool CheckIfAddOnPos(Position pos) const;
+	void SetContentOnPos(Position pos, char symbol);
 private:
 	Board m_board;
 	uint16_t m_moveNo = 0;

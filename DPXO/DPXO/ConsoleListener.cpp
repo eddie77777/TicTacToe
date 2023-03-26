@@ -7,7 +7,7 @@ ConsoleListener::ConsoleListener(int no, IGamePtr game)
 {
 }
 
-void ConsoleListener::OnMakeMove(Pos pos, int currentPlayer)
+void ConsoleListener::OnMakeMove(Position pos, int currentPlayer)
 {
 	system("CLS");
 	std::cout << "Last move: ";

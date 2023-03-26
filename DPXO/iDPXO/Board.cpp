@@ -10,7 +10,7 @@ Board::Board()
 			m_emptyPos.push_back({ i,j });
 }
 
-void Board::UpdateBoard(Pos pos, char symbol)
+void Board::UpdateBoard(Position pos, char symbol)
 {
 	m_matrix[pos.first][pos.second] = symbol;
 	for (uint8_t i = 0; i < m_emptyPos.size(); ++i)
@@ -19,7 +19,7 @@ void Board::UpdateBoard(Pos pos, char symbol)
 }
 
 
-Pos Board::GetARandomEmptyPos() const
+Position Board::GetARandomEmptyPos() const
 {
 	srand(time(NULL));
 	if (m_emptyPos.size() == 0)
