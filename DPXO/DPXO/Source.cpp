@@ -44,7 +44,7 @@ int main()
 		gameMode = EGameMode::Singleplayer;
 		std::cout << "You chose SiNGLE PLAYER MODE. Have fun!\n\n";
 	}
-	auto gameObserver1 = std::make_shared<ConsoleListener>(1);
+	auto gameObserver1 = std::make_shared<ConsoleListener>(1, consoleGame->GetGame());
 	consoleGame->GetGame()->AddListener(gameObserver1);
 	gameObserver1->ShowTable(std::cout, 1);
 	while (consoleGame->GetGame()->GetState() == EGameState::Playing)

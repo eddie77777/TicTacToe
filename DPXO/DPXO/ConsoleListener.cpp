@@ -1,18 +1,19 @@
 #include "ConsoleListener.h"
 #include <iostream>
 
-ConsoleListener::ConsoleListener(int no)
+ConsoleListener::ConsoleListener(int no, IGamePtr game)
 	: m_no(no)
+	,m_game(game)
 {
 }
 
-void ConsoleListener::OnMakeMove(Pos pos, int currentPlayer, IGame* game)
+void ConsoleListener::OnMakeMove(Pos pos, int currentPlayer)
 {
 	system("CLS");
 	std::cout << "Last move: ";
 	std::cout << "Player: " << currentPlayer << "// Pos: " 
 	<< '[' << pos.first + 1 << " , " << pos.second + 1 << ']' << "\n\n";
-	ShowTable(std::cout, 3 - currentPlayer, game);
+	ShowTable(std::cout, 3 - currentPlayer);
 }
 
 void ConsoleListener::OnGameOver(int currentPlayer, EGameState gameState)
@@ -25,11 +26,11 @@ void ConsoleListener::OnGameOver(int currentPlayer, EGameState gameState)
 }
 
 
-void ConsoleListener::ShowTable(std::ostream& os, uint16_t currentPlayer, IGame* game)
+void ConsoleListener::ShowTable(std::ostream& os, uint16_t currentPlayer)
 {
 	os << "Player " << currentPlayer << "'s turn.\n";
 
-	BoardContent bc = game->GetBoardContent();
+	BoardContent bc = m_game->GetBoardContent();
 	os << "  |  1" << "  |  2" << "  |  3\n";
 	os << "--|-----|-----|-----\n";
 	os << "  |     " << '|' << "     " << '|' << "     \n";
