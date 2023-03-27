@@ -18,16 +18,6 @@ void Board::UpdateBoard(Position pos, char symbol)
 			m_emptyPos.erase(m_emptyPos.begin() + i);
 }
 
-
-Position Board::GetARandomEmptyPos() const
-{
-	srand(time(NULL));
-	if (m_emptyPos.size() == 0)
-		return { -2, -2 };
-	uint16_t randomIndex = int(rand()) % m_emptyPos.size();
-	return m_emptyPos[randomIndex];
-}
-
 EmptyPositions Board::GetEmptyPositions() const
 {
 	return m_emptyPos;

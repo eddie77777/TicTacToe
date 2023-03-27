@@ -18,7 +18,6 @@ public:
 
 	//Methods
 	void UpdateBoard(const std::pair<uint16_t, uint16_t> pos, const char symbol);
-	Position GetARandomEmptyPos() const;
 
 	//Getters
 	EmptyPositions GetEmptyPositions() const;
