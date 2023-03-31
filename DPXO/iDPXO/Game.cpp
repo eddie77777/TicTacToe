@@ -71,9 +71,9 @@ EGameState Game::GetState()
 	return EGameState::Playing;
 }
 
-IGamePtr IGame::Produce()
+IGamePtr IGame::Produce(EStrategyType est)
 {
-	return std::make_shared<Game>();
+	return std::make_shared<Game>(est);
 }
 
 void Game::AddListener(IGameListenerWeakPtr observer)
@@ -109,6 +109,11 @@ void Game::RemoveListener(IGameListenerWeakPtr observer)
 			it = m_observers.erase(it);
 		}
 	}
+}
+
+void Game::SetStrategy(IStrategyPtr strategy)
+{
+	
 }
 
 void Game::CallGameOver(EGameState gameState)

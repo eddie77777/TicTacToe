@@ -3,9 +3,12 @@
 #include "IGame.h"
 #include "Board.h"
 
+
+
 class Game : public IGame
 {
 public:
+	Game(EStrategyType est);
 	//Override
 	EMoveResult MakeMove(Position position, EGameMode gameMode) override;
 	BoardContent GetBoardContent() override;
@@ -13,6 +16,7 @@ public:
 	void GameOver() override;
 	void AddListener(IGameListenerWeakPtr observer) override;
 	void RemoveListener(IGameListenerWeakPtr observer) override;
+	void SetStrategy(EStrategyType strategy) override;
 
 	void CallGameOver(EGameState gameState);
 	char GetSymbol();
@@ -25,5 +29,6 @@ private:
 	Board m_board;
 	uint16_t m_moveNo = 0;
 	std::vector<IGameListenerWeakPtr> m_observers; 
+	IStrategyPtr m_strategy;
 };
 

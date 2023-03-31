@@ -140,7 +140,9 @@
     <ClInclude Include="IGameListener.h" />
     <ClInclude Include="IPlayer.h" />
     <ClInclude Include="IStrategy.h" />
+    <ClInclude Include="MediumDifficultStrategy.h" />
     <ClInclude Include="MediumStrategy.h" />
+    <ClInclude Include="StrategyFunctions.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
@@ -148,7 +150,9 @@
     <ClCompile Include="EasyStrategy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="CPlayer.cpp" />
+    <ClCompile Include="MediumDifficultStrategy.cpp" />
     <ClCompile Include="MediumStrategy.cpp" />
+    <ClCompile Include="StrategyFunctions.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
