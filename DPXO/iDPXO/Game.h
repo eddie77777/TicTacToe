@@ -3,12 +3,15 @@
 #include "IGame.h"
 #include "Board.h"
 
-
+using IStrategyPtr = std::shared_ptr<class IStrategy>;
 
 class Game : public IGame
 {
 public:
-	Game(EStrategyType est);
+	//Constructors
+	Game() = default;
+	Game(EStrategyType strategyType);
+
 	//Override
 	EMoveResult MakeMove(Position position, EGameMode gameMode) override;
 	BoardContent GetBoardContent() override;
@@ -17,7 +20,8 @@ public:
 	void AddListener(IGameListenerWeakPtr observer) override;
 	void RemoveListener(IGameListenerWeakPtr observer) override;
 	void SetStrategy(EStrategyType strategy) override;
-
+	
+	//Methods
 	void CallGameOver(EGameState gameState);
 	char GetSymbol();
 

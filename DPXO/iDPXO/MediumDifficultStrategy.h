@@ -7,8 +7,10 @@ private:
 	Position WinOrBlock(char Symbol, Board board);
 	Position MiddleEdge(Board board);
 	Position Corner(Board board);
+
+	virtual Position GetPosition(Board board);
+	
 protected:
 	Position DifficultMove(Board board);
-
 };
 

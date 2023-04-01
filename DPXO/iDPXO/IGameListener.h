@@ -4,7 +4,7 @@
 enum class EGameState;
 class IGame;
 
-using Position = std::pair<uint16_t, uint16_t>;
+using Position = std::pair<int, int>;
 
 class IGameListener
 {
@@ -20,6 +20,8 @@ public:
 	/// \param which player made the move
 	/// \param gameState the state of the game ( tie,win )
 	virtual void OnGameOver(int currentPlayer, EGameState gameState) = 0;
+
+	virtual void OnChangeStrategy() = 0;//TODO
 
 	//Destructor
 	virtual ~IGameListener() = default;

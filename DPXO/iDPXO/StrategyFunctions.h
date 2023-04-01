@@ -3,7 +3,7 @@
 #include <utility>
 #include "Board.h"
 
-using Position = std::pair<uint16_t, uint16_t>;
+using Position = std::pair<int, int>;
 
 Position WinOrBlock(char Symbol, Board board);
 Position MiddleEdge(Board board);

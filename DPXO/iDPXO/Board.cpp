@@ -18,12 +18,21 @@ void Board::UpdateBoard(Position pos, char symbol)
 			m_emptyPos.erase(m_emptyPos.begin() + i);
 }
 
-EmptyPositions Board::GetEmptyPositions() const
+Position Board::GetRandomPosition()
 {
-	return m_emptyPos;
+	srand(time(NULL));
+	if (m_emptyPos.size() == 0)
+		return { -2, -2 };
+	uint16_t randomIndex = int(rand()) % m_emptyPos.size();
+	return m_emptyPos[randomIndex];
 }
 
 BoardContent Board::GetMatrix() const
 {
 	return m_matrix;
+}
+
+EmptyPositions Board::GetEmptyPositions() const
+{
+	return m_emptyPos;
 }

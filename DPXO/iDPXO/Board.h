@@ -7,8 +7,9 @@ const size_t kWidth = 3;
 const size_t kHeight = 3;
 
 using BoardContent = std::array<std::array<char, kWidth>, kHeight>;
-using EmptyPositions = std::vector<std::pair<uint16_t, uint16_t>>;
-using Position = std::pair<uint16_t, uint16_t>;
+using Position = std::pair<int, int>;
+using EmptyPositions = std::vector<Position>;
+
 
 class Board
 {
@@ -17,11 +18,12 @@ public:
 	Board();
 
 	//Methods
-	void UpdateBoard(const std::pair<uint16_t, uint16_t> pos, const char symbol);
+	void UpdateBoard(const Position pos, const char symbol);
+	Position GetRandomPosition();
 
 	//Getters
-	EmptyPositions GetEmptyPositions() const;
 	BoardContent GetMatrix() const;
+	EmptyPositions GetEmptyPositions() const;
 	
 private:
 	//Members

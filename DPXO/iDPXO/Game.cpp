@@ -1,16 +1,29 @@
 #include "Game.h"
 #include <iostream>
+#include "EasyStrategy.h"
+#include "MediumStrategy.h"
+#include "DifficultStrategy.h"
 
-bool Game::CheckIfAddOnPos(Position pos) const
+Game::Game(EStrategyType strategyType)
 {
-	if (pos.first < 0 || pos.second < 0)
-		return false;
-	if (pos.first >= m_board.GetMatrix().size() || pos.second >= m_board.GetMatrix().size())
-		return false;
-	if (m_board.GetMatrix()[pos.first][pos.second] != ' ')
-		return false;
-	return true;
+	switch (strategyType)
+	{
+	case EStrategyType::Easy:
+		m_strategy = std::make_shared<EasyStrategy>();
+		break;
+	case EStrategyType::Difficult:
+		m_strategy = std::make_shared<DifficultStrategy>();
+		break;
+	default:
+		break;
+	}
 }
+
+IGamePtr IGame::Produce(EStrategyType strategyType)
+{
+	return std::make_shared<Game>(strategyType);
+}
+
 
 EMoveResult Game::MakeMove(Position position, EGameMode gameMode)
 {
@@ -33,7 +46,7 @@ EMoveResult Game::MakeMove(Position position, EGameMode gameMode)
 			m_moveNo++;
 			if (GetState() == EGameState::Playing)
 			{
-				SetContentOnPos(m_board.GetARandomEmptyPos(), GetSymbol()); //SetContentOnPos(diff->getPos(m_board), GetSymbol());
+				SetContentOnPos(m_strategy->GetPosition(m_board), GetSymbol()); //SetContentOnPos(diff->getPos(m_board), GetSymbol());
 				m_moveNo++;
 			}
 			return EMoveResult::Success;
@@ -71,16 +84,6 @@ EGameState Game::GetState()
 	return EGameState::Playing;
 }
 
-IGamePtr IGame::Produce(EStrategyType est)
-{
-	return std::make_shared<Game>(est);
-}
-
-void Game::AddListener(IGameListenerWeakPtr observer)
-{
-	m_observers.push_back(observer);
-}
-
 void Game::GameOver()
 {
 	if (GetState() == EGameState::Win)
@@ -91,6 +94,11 @@ void Game::GameOver()
 	{
 		CallGameOver(EGameState::Tie);
 	}
+}
+
+void Game::AddListener(IGameListenerWeakPtr observer)
+{
+	m_observers.push_back(observer);
 }
 
 void Game::RemoveListener(IGameListenerWeakPtr observer)
@@ -111,9 +119,21 @@ void Game::RemoveListener(IGameListenerWeakPtr observer)
 	}
 }
 
-void Game::SetStrategy(IStrategyPtr strategy)
+void Game::SetStrategy(EStrategyType strategyType)
 {
-	
+	switch (strategyType)
+	{
+	case EStrategyType::Easy:
+		m_strategy.reset();
+		m_strategy = std::make_shared<EasyStrategy>();
+		break;
+	case EStrategyType::Difficult:
+		m_strategy.reset();
+		m_strategy = std::make_shared<DifficultStrategy>();
+		break;
+	default:
+		break;
+	}
 }
 
 void Game::CallGameOver(EGameState gameState)
@@ -134,6 +154,17 @@ char Game::GetSymbol()
 	else
 		symbol = '0';
 	return symbol;
+}
+
+bool Game::CheckIfAddOnPos(Position pos) const
+{
+	if (pos.first < 0 || pos.second < 0)
+		return false;
+	if (pos.first >= m_board.GetMatrix().size() || pos.second >= m_board.GetMatrix().size())
+		return false;
+	if (m_board.GetMatrix()[pos.first][pos.second] != ' ')
+		return false;
+	return true;
 }
 
 void Game::SetContentOnPos(Position pos, char symbol)

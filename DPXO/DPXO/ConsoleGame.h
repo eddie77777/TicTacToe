@@ -5,10 +5,12 @@
 class ConsoleGame
 {
 public:
-	ConsoleGame();
+	ConsoleGame(EStrategyType strategyType = EStrategyType::Easy);
 
 	void MakeMove(EGameMode gameMode);
 	IGamePtr GetGame();
+	void SetStrategy(EStrategyType strategyType);
+
 private:
 	uint16_t ReadPos(std::string axis);
 	

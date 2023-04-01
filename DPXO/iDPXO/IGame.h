@@ -4,7 +4,6 @@
 #include <vector>
 #include <memory>
 #include "IGameListener.h"
-#include "IStrategy.h"
 
 //Enums
 enum class EGameState {
@@ -31,7 +30,7 @@ enum class EStrategyType {
 
 //Typdefs
 using BoardContent = std::array<std::array<char, 3>, 3>;
-using EmptyPositions = std::vector<std::pair<uint16_t, uint16_t>>;
+using EmptyPositions = std::vector<std::pair<int, int>>;
 using IGamePtr = std::shared_ptr<class IGame>;
 
 class IGame
@@ -41,7 +40,7 @@ public:
 
 	/// \brief Constructs an object of type Game and wraps it in a std::shared_ptr to IGame
 	/// \return a shared_ptr to IGame
-	static IGamePtr Produce(EStrategyType est = EStrategyType::Easy);
+	static IGamePtr Produce(EStrategyType strategyType);
 	//Methods
 
 	/// \brief For each type of game checks if the player can add a symbol on a position and if it's affirmative it adds it and returns the result
@@ -61,7 +60,7 @@ public:
 	/// \brief Tells the observer how the game ended
 	virtual void GameOver() = 0;
 
-	virtual void SetStrategy(EStrategyType strategy) = 0;
+	virtual void SetStrategy(EStrategyType strategyType) = 0;
 
 	//Listeners
 

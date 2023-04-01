@@ -30,7 +30,7 @@ int ChooseGameMode()
 
 int main()
 {
-	ConsoleGame* consoleGame = new ConsoleGame();
+	ConsoleGame* consoleGame = new ConsoleGame(EStrategyType::Difficult);
 	EGameMode gameMode;
 	int mode = ChooseGameMode();
 	system("CLS");

@@ -3,10 +3,10 @@
 #include "HPlayer.h"
 #include <string>
 
-ConsoleGame::ConsoleGame()
+ConsoleGame::ConsoleGame(EStrategyType strategyType)
 {
 	std::cout << "Let's start the game!\n";
-	m_game = IGame::Produce();
+	m_game = IGame::Produce(strategyType);
 }
 
 uint16_t ConsoleGame::ReadPos(std::string axis)
@@ -55,4 +55,10 @@ void ConsoleGame::MakeMove(EGameMode gameMode)
 IGamePtr ConsoleGame::GetGame()
 {
 	return m_game;
+}
+
+void ConsoleGame::SetStrategy(EStrategyType strategyType)
+{
+	//TODO: Hotkey for change strategy
+	m_game->SetStrategy(strategyType);
 }
