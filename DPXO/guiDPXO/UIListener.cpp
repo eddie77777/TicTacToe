@@ -1,16 +1,19 @@
 #include "UIListener.h"
-#include"QMessagebox"
+#include<QMessagebox>
+#include<QtCore/QObject>
+#include<QtWidgets>
 
 UIListener::UIListener(int no, IGamePtr game) : m_no(no)
 , m_game(game)
 {
 }
 
-void UIListener::OnMakeMove(Position pos, int currentPlayer, IGame* game)
+void UIListener::OnMakeMove(Position pos, int currentPlayer)
 {
-    QString message = "Player " + QString::number(currentPlayer) + " made a move at position (" +
-        QString::number(pos.first) + "," + QString::number(pos.second) + ")";
-    QMessageBox::information(nullptr, "Previous move:", message);
+    //QPushButton* button;
+    //connect(button, &QPushButton::clicked,this,&UIListener::OnMakeMove);
+    //QPushButton* button = qobject_cast<QPushButton*>(sender());
+    
 }
 
 
@@ -22,4 +25,12 @@ void UIListener::OnGameOver(int currentPlayer, EGameState gameState)
     }
     else
         QMessageBox::information(nullptr, "Game Over", "It's a tie!");
+}
+char UIListener::ECellStateToChar(ECellState cellState)
+{
+    if (cellState == ECellState::Zero)
+        return '0';
+    else if (cellState == ECellState::Cross)
+        return 'X';
+    return ' ';
 }

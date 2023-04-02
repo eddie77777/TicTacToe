@@ -163,3 +163,13 @@ void Game::SetContentOnPos(Position pos, ECellState cellState)
 			sp->OnMakeMove(pos, m_moveNo % 2 + 1);
 		}
 }
+
+std::vector<IGameListenerWeakPtr> Game::GetObservers() const
+{
+	return m_observers;
+}
+
+IStrategyPtr Game::GetStrategy() const
+{
+	return m_strategy;
+}

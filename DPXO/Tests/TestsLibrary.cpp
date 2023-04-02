@@ -8,27 +8,27 @@ TEST(TestUpdate, Board)
 {
     Board board;
     const std::pair<uint16_t, uint16_t> pos = { 1,1 };
-    const char symbol = 'X';
-    board.UpdateBoard(pos, symbol);
-    EXPECT_EQ(board.GetMatrix()[1][1],symbol);
+    board.UpdateBoard(pos, ECellState::Cross);
+    EXPECT_EQ(board.GetMatrix()[1][1], ECellState::Cross);
 }
 
 TEST(TestGetEmptyPosition,Board)
 {
     Board board;
     std::pair<uint16_t, uint16_t> pos = { 1,1 };
-    const char symbol = 'X';
-    board.UpdateBoard(pos, symbol);
+    board.UpdateBoard(pos, ECellState::Cross);
     for (uint16_t i = 0; i < board.GetEmptyPositions().size(); i++)
-        EXPECT_NE(pos, board.GetEmptyPositions()[i]);
+    {
+        std::pair<uint16_t, uint16_t> pos2 = board.GetEmptyPositions()[i];
+        EXPECT_NE(pos, pos2);
+    }
        
 }
 
 TEST(TestMakeMoveSinglePlayerOnSamePos,Game)
 {
-    Game game;
+    Game game(EStrategyType::Easy);
     std::pair<uint16_t, uint16_t> pos = { 1,1 };
-    const char symbol = 'X';
     EXPECT_EQ(EMoveResult::Success, game.MakeMove(pos, EGameMode::Singleplayer));
     EXPECT_EQ(EMoveResult::Fail, game.MakeMove(pos, EGameMode::Singleplayer));
 }
@@ -37,7 +37,6 @@ TEST(TestMakeMoveMultiPlayer, Game)
 {
     Game game;
     std::pair<uint16_t, uint16_t> pos = { 1,1 };
-    const char symbol = 'X';
     EXPECT_EQ(EMoveResult::Success, game.MakeMove(pos, EGameMode::Multiplayer));
     EXPECT_EQ(EMoveResult::Fail, game.MakeMove(pos, EGameMode::Multiplayer));
 }
@@ -45,7 +44,6 @@ TEST(TestMakeMoveMultiPlayer, Game)
 
 TEST(GameStateWinRow, Game)
 {
-    const char symbol = 'X';
     Game game;
     for (uint16_t i = 0; i < 2; ++i)
     {
@@ -59,7 +57,6 @@ TEST(GameStateWinRow, Game)
 
 TEST(GameStateWinColumn, Game)
 {
-    const char symbol = 'X';
     Game game;
     for (uint16_t i = 0; i < 2; ++i)
     {
@@ -73,7 +70,6 @@ TEST(GameStateWinColumn, Game)
 
 TEST(GameStateWinPrincipalDiagonal, Game)
 {
-    const char symbol = 'X';
     Game game;
     for (uint16_t i = 0; i < 2; ++i)
     {
@@ -87,7 +83,6 @@ TEST(GameStateWinPrincipalDiagonal, Game)
 
 TEST(GameStateWinSecondarylDiagonal, Game)
 {
-    const char symbol = 'X';
     Game game;
     for (uint16_t i = 0; i < 2; ++i)
     {
@@ -102,8 +97,6 @@ TEST(GameStateWinSecondarylDiagonal, Game)
 
 TEST(GameStateTie, Game)
 {
-    const char symbol1 = 'X';
-    const char symbol2 = '0';
     Game game;
     game.MakeMove({ 0,0 }, EGameMode::Multiplayer);
     game.MakeMove({ 0,1 }, EGameMode::Multiplayer);

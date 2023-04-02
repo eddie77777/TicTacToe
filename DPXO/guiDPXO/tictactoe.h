@@ -17,7 +17,9 @@ private slots:
 
 private:
     QLabel* titleLabel;
+    QLabel* chooseDifficultyLabel;
     QPushButton* playWithComputerButton;
     QPushButton* playWithPlayerButton;
+    QComboBox* difficultyComboBox;
 };
 #endif // TICTACTOE_H

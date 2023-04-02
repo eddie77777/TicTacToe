@@ -18,5 +18,19 @@
     <ClCompile Include="TestsLibrary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MockTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MockIGameListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MockIStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

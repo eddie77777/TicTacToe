@@ -10,7 +10,7 @@ Board::Board()
 			m_emptyPos.push_back({ i,j });
 }
 
-void Board::UpdateBoard(Position pos, enum class ECellState cellState)
+void Board::UpdateBoard(Position pos, ECellState cellState)
 {
 	m_matrix[pos.first][pos.second] = cellState;
 	for (uint8_t i = 0; i < m_emptyPos.size(); ++i)

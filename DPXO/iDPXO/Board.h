@@ -8,7 +8,7 @@
 const size_t kWidth = 3;
 const size_t kHeight = 3;
 
-using BoardContent = std::array<std::array<enum class ECellState, kWidth>, kHeight>;
+using BoardContent = std::array<std::array<ECellState, kWidth>, kHeight>;
 using Position = std::pair<int, int>;
 using EmptyPositions = std::vector<Position>;
 
@@ -19,7 +19,7 @@ public:
 	Board();
 
 	//Methods
-	void UpdateBoard(const Position pos, enum class ECellState cellState);
+	void UpdateBoard(const Position pos, ECellState cellState);
 	Position GetRandomPosition() const;
 
 	//Getters

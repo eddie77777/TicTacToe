@@ -2,8 +2,8 @@
 #include "QMessageBox"
 #include "QVBoxLayout"
 
-MainWindow::MainWindow(EGameMode gameMode, QWidget* parent)
-    : QMainWindow(parent), m_gameMode(gameMode)
+MainWindow::MainWindow(EGameMode gameMode, EStrategyType strategyType, QWidget* parent)
+    : QMainWindow(parent), m_gameMode(gameMode), m_strategy(strategyType)
 {
     // Create game board
     for (int row = 0; row < 3; row++)
@@ -34,7 +34,7 @@ MainWindow::MainWindow(EGameMode gameMode, QWidget* parent)
     setCentralWidget(centralWidget);
     // Set the initial size of the main window to 300x300
     setFixedSize(300, 300);
-    m_game = IGame::Produce();
+    m_game = IGame::Produce(strategyType);
 }
 
 MainWindow::~MainWindow()
@@ -48,15 +48,14 @@ void MainWindow::HandleButton()
     int col = button->property("col").toInt();
     m_game->MakeMove({ row, col }, m_gameMode);
     BoardContent boardContent = m_game->GetBoardContent();
-    char value = boardContent[row][col];
+    char value = ECellStateToChar(boardContent[row][col]);
     QString buttonText(value);
     button->setText(buttonText);
     button->setEnabled(false);
     if (m_game->GetState() != EGameState::Playing)
         m_game->GameOver();
-
 }
- 
+
 IGamePtr MainWindow::GetGame()
 {
     return m_game;
@@ -65,4 +64,12 @@ IGamePtr MainWindow::GetGame()
 void MainWindow::SetListener(std::shared_ptr<IGameListener> listener)
 {
     m_listener = listener;
+}
+char MainWindow::ECellStateToChar(ECellState cellState)
+{
+    if (cellState == ECellState::Zero)
+        return '0';
+    else if (cellState == ECellState::Cross)
+        return 'X';
+    return ' ';
 }

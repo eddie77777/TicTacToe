@@ -23,11 +23,14 @@ public:
 	//Methods
 	void CallGameOver(EGameState gameState);
 	ECellState GetCellState();
+	std::vector<IGameListenerWeakPtr> GetObservers() const;
+	IStrategyPtr GetStrategy() const;
 
 private:
 	//Methods
 	bool CheckIfAddOnPos(Position pos) const;
 	void SetContentOnPos(Position pos, ECellState cellState);
+	
 
 private:
 	Board m_board;
