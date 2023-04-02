@@ -20,7 +20,7 @@ public:
 
 	//Methods
 	void UpdateBoard(const Position pos, enum class ECellState cellState);
-	Position GetRandomPosition();
+	Position GetRandomPosition() const;
 
 	//Getters
 	BoardContent GetMatrix() const;

@@ -3,5 +3,5 @@
 class EasyStrategy : public IStrategy
 {
 public:
-	Position GetPosition(Board board) override;
+	Position GetPosition(const Board& board) override;
 };

@@ -18,7 +18,7 @@ void Board::UpdateBoard(Position pos, enum class ECellState cellState)
 			m_emptyPos.erase(m_emptyPos.begin() + i);
 }
 
-Position Board::GetRandomPosition()
+Position Board::GetRandomPosition() const
 {
 	srand(time(NULL));
 	if (m_emptyPos.size() == 0)

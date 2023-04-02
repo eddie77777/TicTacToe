@@ -1,6 +1,6 @@
 #include "MediumStrategy.h"
 
-Position MediumStrategy::GetPosition(Board board)
+Position MediumStrategy::GetPosition(const Board& board)
 {
 	m_contor++;
 	if (m_contor % 2)

@@ -1,6 +1,6 @@
 #include "EasyStrategy.h"
 
-Position EasyStrategy::GetPosition(Board board)
+Position EasyStrategy::GetPosition(const Board& board)
 {
 	return board.GetRandomPosition();
 }
