@@ -1,6 +1,6 @@
 #include "MediumDifficultStrategy.h"
 
-Position MediumDifficultStrategy::WinOrBlock(ECellState cellState, Board board)
+Position MediumDifficultStrategy::WinOrBlock(ECellState cellState, const Board& board)
 {
 	//checks for every row if the last two positions are the same
 	for (uint16_t i = 0; i < 3; i++)
@@ -66,7 +66,7 @@ Position MediumDifficultStrategy::WinOrBlock(ECellState cellState, Board board)
 	return { -1, -1 };
 }
 
-Position MediumDifficultStrategy::Corner(ECellState cellState, Board board)
+Position MediumDifficultStrategy::Corner(ECellState cellState, const Board& board)
 {
 	if (board.GetMatrix()[0][0] == board.GetMatrix()[2][2] && board.GetMatrix()[0][0] != cellState && board.GetMatrix()[0][1] == ECellState::Empty)
 		return { 0, 1 };
@@ -85,7 +85,7 @@ Position MediumDifficultStrategy::Corner(ECellState cellState, Board board)
 
 }
 
-Position MediumDifficultStrategy::DifficultMove(Board board)
+Position MediumDifficultStrategy::DifficultMove(const Board& board)
 {
 	if (board.GetMatrix()[1][1] == ECellState::Empty)
 		return { 1, 1 };
@@ -107,7 +107,7 @@ Position MediumDifficultStrategy::DifficultMove(Board board)
 	return { -2, -2 };
 }
 
-Position MediumDifficultStrategy::MiddleEdge(Board board)
+Position MediumDifficultStrategy::MiddleEdge(const Board& board)
 {
 	if (board.GetMatrix()[0][1] == ECellState::Empty)
 		return { 0, 1 };

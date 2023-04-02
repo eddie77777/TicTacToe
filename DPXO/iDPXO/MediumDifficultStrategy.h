@@ -4,11 +4,11 @@
 class MediumDifficultStrategy : public IStrategy 
 {
 private:
-	Position WinOrBlock(ECellState cellState, Board board);
-	Position MiddleEdge(Board board);
-	Position Corner(ECellState cellState, Board board);
+	Position WinOrBlock(ECellState cellState, const Board& board);
+	Position MiddleEdge(const Board& board);
+	Position Corner(ECellState cellState, const Board& board);
 	
 protected:
-	Position DifficultMove(Board board);
+	Position DifficultMove(const Board& board);
 };
 
