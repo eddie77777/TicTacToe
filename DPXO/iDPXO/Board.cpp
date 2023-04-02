@@ -4,15 +4,15 @@
 Board::Board()
 {
 	for (uint8_t i = 0; i < m_matrix.size(); ++i)
-		m_matrix[i].fill(' ');
+		m_matrix[i].fill(ECellState::Empty);
 	for (uint8_t i = 0; i < m_matrix.size(); ++i)
 		for (uint8_t j = 0; j < m_matrix[i].size(); ++j)
 			m_emptyPos.push_back({ i,j });
 }
 
-void Board::UpdateBoard(Position pos, char symbol)
+void Board::UpdateBoard(Position pos, enum class ECellState cellState)
 {
-	m_matrix[pos.first][pos.second] = symbol;
+	m_matrix[pos.first][pos.second] = cellState;
 	for (uint8_t i = 0; i < m_emptyPos.size(); ++i)
 		if (m_emptyPos[i] == pos)
 			m_emptyPos.erase(m_emptyPos.begin() + i);

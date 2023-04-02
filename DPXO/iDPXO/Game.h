@@ -22,12 +22,12 @@ public:
 	
 	//Methods
 	void CallGameOver(EGameState gameState);
-	char GetSymbol();
+	ECellState GetCellState();
 
 private:
 	//Methods
 	bool CheckIfAddOnPos(Position pos) const;
-	void SetContentOnPos(Position pos, char symbol);
+	void SetContentOnPos(Position pos, ECellState cellState);
 
 private:
 	Board m_board;

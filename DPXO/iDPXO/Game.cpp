@@ -34,7 +34,7 @@ EMoveResult Game::MakeMove(Position position, EGameMode gameMode)
 	{
 		if (CheckIfAddOnPos(position))
 		{
-			SetContentOnPos(position, GetSymbol());
+			SetContentOnPos(position, GetCellState());
 			m_moveNo++;
 			return EMoveResult::Success;
 		}
@@ -45,11 +45,11 @@ EMoveResult Game::MakeMove(Position position, EGameMode gameMode)
 	{
 		if (CheckIfAddOnPos(position))
 		{
-			SetContentOnPos(position, GetSymbol());
+			SetContentOnPos(position, GetCellState());
 			m_moveNo++;
 			if (GetState() == EGameState::Playing)
 			{
-				SetContentOnPos(m_strategy->GetPosition(m_board), GetSymbol()); //SetContentOnPos(diff->getPos(m_board), GetSymbol());
+				SetContentOnPos(m_strategy->GetPosition(m_board), GetCellState());
 				m_moveNo++;
 			}
 			return EMoveResult::Success;
@@ -66,21 +66,21 @@ BoardContent Game::GetBoardContent()
 
 EGameState Game::GetState()
 {
-	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][1] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][2] && m_board.GetMatrix()[0][0] != ' ')
+	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][1] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[0][2] && m_board.GetMatrix()[0][0] != ECellState::Empty)
 		return EGameState::Win;
-	if (m_board.GetMatrix()[1][0] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[1][0] == m_board.GetMatrix()[1][2] && m_board.GetMatrix()[1][0] != ' ')
+	if (m_board.GetMatrix()[1][0] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[1][0] == m_board.GetMatrix()[1][2] && m_board.GetMatrix()[1][0] != ECellState::Empty)
 		return EGameState::Win;
-	if (m_board.GetMatrix()[2][0] == m_board.GetMatrix()[2][1] && m_board.GetMatrix()[2][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[2][0] != ' ')
+	if (m_board.GetMatrix()[2][0] == m_board.GetMatrix()[2][1] && m_board.GetMatrix()[2][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[2][0] != ECellState::Empty)
 		return EGameState::Win;
-	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[1][0] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[2][0] && m_board.GetMatrix()[0][0] != ' ')
+	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[1][0] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[2][0] && m_board.GetMatrix()[0][0] != ECellState::Empty)
 		return EGameState::Win;
-	if (m_board.GetMatrix()[0][1] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][1] == m_board.GetMatrix()[2][1] && m_board.GetMatrix()[0][1] != ' ')
+	if (m_board.GetMatrix()[0][1] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][1] == m_board.GetMatrix()[2][1] && m_board.GetMatrix()[0][1] != ECellState::Empty)
 		return EGameState::Win;
-	if (m_board.GetMatrix()[0][2] == m_board.GetMatrix()[1][2] && m_board.GetMatrix()[0][2] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[0][2] != ' ')
+	if (m_board.GetMatrix()[0][2] == m_board.GetMatrix()[1][2] && m_board.GetMatrix()[0][2] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[0][2] != ECellState::Empty)
 		return EGameState::Win;
-	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[0][0] != ' ')
+	if (m_board.GetMatrix()[0][0] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][0] == m_board.GetMatrix()[2][2] && m_board.GetMatrix()[0][0] != ECellState::Empty)
 		return EGameState::Win;
-	if (m_board.GetMatrix()[0][2] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][2] == m_board.GetMatrix()[2][0] && m_board.GetMatrix()[0][2] != ' ')
+	if (m_board.GetMatrix()[0][2] == m_board.GetMatrix()[1][1] && m_board.GetMatrix()[0][2] == m_board.GetMatrix()[2][0] && m_board.GetMatrix()[0][2] != ECellState::Empty)
 		return EGameState::Win;
 	if (m_board.GetEmptyPositions().empty())
 		return EGameState::Tie;
@@ -133,13 +133,13 @@ void Game::CallGameOver(EGameState gameState)
 		}
 }
 
-char Game::GetSymbol()
+ECellState Game::GetCellState()
 {
-	char symbol;
+	ECellState symbol;
 	if (m_moveNo % 2 == 0)
-		symbol = 'X';
+		symbol = ECellState::Cross;
 	else
-		symbol = '0';
+		symbol = ECellState::Zero;
 	return symbol;
 }
 
@@ -149,14 +149,14 @@ bool Game::CheckIfAddOnPos(Position pos) const
 		return false;
 	if (pos.first >= m_board.GetMatrix().size() || pos.second >= m_board.GetMatrix().size())
 		return false;
-	if (m_board.GetMatrix()[pos.first][pos.second] != ' ')
+	if (m_board.GetMatrix()[pos.first][pos.second] != ECellState::Empty)
 		return false;
 	return true;
 }
 
-void Game::SetContentOnPos(Position pos, char symbol)
+void Game::SetContentOnPos(Position pos, ECellState cellState)
 {
-	m_board.UpdateBoard(pos, symbol);
+	m_board.UpdateBoard(pos, cellState);
 	for (auto obs : m_observers)
 		if (auto sp = obs.lock())
 		{

@@ -4,9 +4,9 @@
 class MediumDifficultStrategy : public IStrategy 
 {
 private:
-	Position WinOrBlock(char symbol, Board board);
+	Position WinOrBlock(ECellState cellState, Board board);
 	Position MiddleEdge(Board board);
-	Position Corner(char symbol, Board board);
+	Position Corner(ECellState cellState, Board board);
 	
 protected:
 	Position DifficultMove(Board board);

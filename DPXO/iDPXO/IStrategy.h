@@ -4,9 +4,6 @@
 #include "Board.h"
 #include <memory>
 
-using Position = std::pair<int, int>;
-using IStrategyPtr = std::shared_ptr<class IStrategy>;
-
 class IStrategy {
 public:
 	/// \brief Choose the position where computer place symbol, it depends on the strategy type that user have chosen

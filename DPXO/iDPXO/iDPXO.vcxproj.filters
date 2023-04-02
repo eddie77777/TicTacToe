@@ -45,10 +45,10 @@
     <ClInclude Include="MediumStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StrategyFunctions.h">
+    <ClInclude Include="MediumDifficultStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MediumDifficultStrategy.h">
+    <ClInclude Include="Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -69,9 +69,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MediumStrategy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StrategyFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MediumDifficultStrategy.cpp">
