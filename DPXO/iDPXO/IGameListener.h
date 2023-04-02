@@ -1,10 +1,11 @@
 #pragma once
 #include <memory>
 
-enum class EGameState;
-class IGame;
-
+/** This is a position in the game board */
 using Position = std::pair<int, int>;
+
+/** This is a weak pointer to an object of IGameListener type */
+using IGameListenerWeakPtr = std::weak_ptr<class IGameListener>;
 
 class IGameListener
 {
@@ -19,12 +20,9 @@ public:
 	/// \brief Offers to users info about how the game ended 
 	/// \param which player made the move
 	/// \param gameState the state of the game ( tie,win )
-	virtual void OnGameOver(int currentPlayer, EGameState gameState) = 0;
+	virtual void OnGameOver(int currentPlayer, enum class EGameState gameState) = 0;
 
-	virtual void OnChangeStrategy() = 0;//TODO
 
 	//Destructor
 	virtual ~IGameListener() = default;
 };
-
-using IGameListenerWeakPtr = std::weak_ptr<IGameListener>;

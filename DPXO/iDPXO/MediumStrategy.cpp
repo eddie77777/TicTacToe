@@ -2,6 +2,7 @@
 
 Position MediumStrategy::GetPosition(Board board)
 {
+	m_contor++;
 	if (m_contor % 2)
 	{
 		return board.GetRandomPosition();

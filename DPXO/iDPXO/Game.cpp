@@ -14,6 +14,9 @@ Game::Game(EStrategyType strategyType)
 	case EStrategyType::Difficult:
 		m_strategy = std::make_shared<DifficultStrategy>();
 		break;
+	case EStrategyType::Medium:
+		m_strategy = std::make_shared<MediumStrategy>();
+		break;
 	default:
 		break;
 	}
@@ -119,22 +122,6 @@ void Game::RemoveListener(IGameListenerWeakPtr observer)
 	}
 }
 
-void Game::SetStrategy(EStrategyType strategyType)
-{
-	switch (strategyType)
-	{
-	case EStrategyType::Easy:
-		m_strategy.reset();
-		m_strategy = std::make_shared<EasyStrategy>();
-		break;
-	case EStrategyType::Difficult:
-		m_strategy.reset();
-		m_strategy = std::make_shared<DifficultStrategy>();
-		break;
-	default:
-		break;
-	}
-}
 
 void Game::CallGameOver(EGameState gameState)
 {

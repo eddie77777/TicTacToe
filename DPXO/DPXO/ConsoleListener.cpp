@@ -13,7 +13,6 @@ void ConsoleListener::OnMakeMove(Position pos, int currentPlayer)
 	std::cout << "Last move: ";
 	std::cout << "Player: " << currentPlayer << "// Pos: " 
 	<< '[' << pos.first + 1 << " , " << pos.second + 1 << ']' << "\n";
-	std::cout << "Press [s] to change strategy for computer.\n\n";
 	ShowTable(std::cout, 3 - currentPlayer);
 }
 

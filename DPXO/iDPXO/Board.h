@@ -10,7 +10,6 @@ using BoardContent = std::array<std::array<char, kWidth>, kHeight>;
 using Position = std::pair<int, int>;
 using EmptyPositions = std::vector<Position>;
 
-
 class Board
 {
 public:

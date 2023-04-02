@@ -56,9 +56,3 @@ IGamePtr ConsoleGame::GetGame()
 {
 	return m_game;
 }
-
-void ConsoleGame::SetStrategy(EStrategyType strategyType)
-{
-	//TODO: Hotkey for change strategy
-	m_game->SetStrategy(strategyType);
-}

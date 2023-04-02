@@ -1,14 +1,12 @@
 #pragma once
 #include "IStrategy.h"
 
-class MediumDifficultStrategy : IStrategy 
+class MediumDifficultStrategy : public IStrategy 
 {
 private:
-	Position WinOrBlock(char Symbol, Board board);
+	Position WinOrBlock(char symbol, Board board);
 	Position MiddleEdge(Board board);
-	Position Corner(Board board);
-
-	virtual Position GetPosition(Board board);
+	Position Corner(char symbol, Board board);
 	
 protected:
 	Position DifficultMove(Board board);
