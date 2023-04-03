@@ -24,7 +24,7 @@ public:
 	void CallGameOver(EGameState gameState);
 	ECellState GetCellState();
 	std::vector<IGameListenerWeakPtr> GetObservers() const;
-	IStrategyPtr GetStrategy() const;
+	void SetStrategy(IStrategyPtr newStrategy);
 
 private:
 	//Methods

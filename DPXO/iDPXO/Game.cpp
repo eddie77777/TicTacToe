@@ -169,7 +169,7 @@ std::vector<IGameListenerWeakPtr> Game::GetObservers() const
 	return m_observers;
 }
 
-IStrategyPtr Game::GetStrategy() const
+void Game::SetStrategy(IStrategyPtr newStrategy)
 {
-	return m_strategy;
+	m_strategy = newStrategy;
 }
