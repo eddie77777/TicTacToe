@@ -23,6 +23,8 @@ private:
     IGamePtr m_game;
     EGameMode m_gameMode;
     EStrategyType m_strategy;
+
+    void UpdateGUI();
 };
 
 #endif // MAINWINDOW_H

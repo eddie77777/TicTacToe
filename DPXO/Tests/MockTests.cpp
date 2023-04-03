@@ -2,6 +2,7 @@
 #include "MockIGameListener.h"
 #include "MockIStrategy.h"
 #include "Game.h"
+#include "EasyStrategy.h"
 
 using namespace ::testing;
 
@@ -41,7 +42,7 @@ TEST(Game, Strategy)
 {
 	Game game(EStrategyType::Easy);
 	Position pos1 = { 0,0 };
-	//EXPECT_CALL(*dynamic_cast<MockIStrategy*>(game.GetStrategy().get()), GetPosition(_));
+	EXPECT_CALL(*dynamic_cast<MockIStrategy*>(game.GetStrategy().get()), GetPosition(_));
 	game.MakeMove(pos1, EGameMode::Singleplayer);
 	
 }

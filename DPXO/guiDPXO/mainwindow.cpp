@@ -47,13 +47,19 @@ void MainWindow::HandleButton()
     int row = button->property("row").toInt();
     int col = button->property("col").toInt();
     m_game->MakeMove({ row, col }, m_gameMode);
-    BoardContent boardContent = m_game->GetBoardContent();
-    char value = ECellStateToChar(boardContent[row][col]);
-    QString buttonText(value);
-    button->setText(buttonText);
+    UpdateGUI();
     button->setEnabled(false);
     if (m_game->GetState() != EGameState::Playing)
+    {
+        for (int row = 0; row < 3; row++)
+        {
+            for (int col = 0; col < 3; col++)
+            {
+                buttons[row][col]->setEnabled(false);
+            }
+        }
         m_game->GameOver();
+    }  
 }
 
 IGamePtr MainWindow::GetGame()
@@ -65,6 +71,7 @@ void MainWindow::SetListener(std::shared_ptr<IGameListener> listener)
 {
     m_listener = listener;
 }
+
 char MainWindow::ECellStateToChar(ECellState cellState)
 {
     if (cellState == ECellState::Zero)
@@ -72,4 +79,18 @@ char MainWindow::ECellStateToChar(ECellState cellState)
     else if (cellState == ECellState::Cross)
         return 'X';
     return ' ';
+}
+
+void MainWindow::UpdateGUI()
+{
+    auto board = m_game->GetBoardContent();
+    for (int row = 0; row < 3; row++)
+    {
+        for (int col = 0; col < 3; col++)
+        {
+            buttons[row][col]->setText(QString(ECellStateToChar(board[row][col])));
+            if(buttons[row][col]->text()!=" ")
+                buttons[row][col]->setEnabled(false);
+        }
+    }
 }
